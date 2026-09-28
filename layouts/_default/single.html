@@ -43,6 +43,18 @@
                   </time>
                 </div>
                 {{ end }}
+                {{ if and (ne .Params.wordCount false) (ne site.Params.wordCount false) }}
+                <div class="group">
+                  <i class="material-icons">description</i>
+                  <span>字数：{{ .WordCount }} 字</span>
+                </div>
+                {{ end }}
+                {{ if and (ne .Params.readingTime false) (ne site.Params.readingTime false) }}
+                <div class="group">
+                  <i class="material-icons">schedule</i>
+                  <span>阅读：{{ .ReadingTime }} 分钟</span>
+                </div>
+                {{ end }}
               </div>
               {{ end }}
               <div class="card-content">
