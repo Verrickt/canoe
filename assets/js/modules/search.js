@@ -39,6 +39,7 @@ export function initSearch() {
           { name: 'categories', weight: 0.15 },
           { name: 'content', weight: 0.1 },
         ],
+        includeMatches: true,
         threshold: 0.4,
         ignoreLocation: true,
         minMatchCharLength: 1,
@@ -48,6 +49,75 @@ export function initSearch() {
     } finally {
       isLoadingIndex = false;
     }
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlightText(text, query) {
+    if (!text) return '';
+    const escaped = escapeHtml(text);
+    if (!query) return escaped;
+
+    const words = query
+      .trim()
+      .split(/\s+/)
+      .filter((w) => w.length > 0)
+      .map(escapeRegExp);
+    if (words.length === 0) return escaped;
+
+    const pattern = new RegExp(`(${words.join('|')})`, 'gi');
+    return escaped.replace(pattern, '<mark class="search-highlight">$1</mark>');
+  }
+
+  function extractSnippet(item, matches, query) {
+    const content = (item.content || '').replace(/\s+/g, ' ').trim();
+    if (!content) return '';
+
+    // 1. Match from Fuse.js content matches
+    const contentMatch = matches?.find((m) => m.key === 'content');
+    if (contentMatch && contentMatch.indices && contentMatch.indices.length > 0) {
+      const [startIdx, endIdx] = contentMatch.indices[0];
+      const snippetRadius = 45;
+      const start = Math.max(0, startIdx - snippetRadius);
+      const end = Math.min(content.length, endIdx + snippetRadius + 1);
+
+      let snippet = content.slice(start, end).trim();
+      if (start > 0) snippet = '...' + snippet;
+      if (end < content.length) snippet = snippet + '...';
+      return snippet;
+    }
+
+    // 2. Fallback: match query terms in content directly
+    if (query) {
+      const lowerContent = content.toLowerCase();
+      const words = query.toLowerCase().trim().split(/\s+/);
+      for (const w of words) {
+        const idx = lowerContent.indexOf(w);
+        if (idx !== -1) {
+          const start = Math.max(0, idx - 40);
+          const end = Math.min(content.length, idx + w.length + 50);
+          let snippet = content.slice(start, end).trim();
+          if (start > 0) snippet = '...' + snippet;
+          if (end < content.length) snippet = snippet + '...';
+          return snippet;
+        }
+      }
+    }
+
+    // 3. Fallback: preview start of content
+    return content.slice(0, 90) + (content.length > 90 ? '...' : '');
   }
 
   function renderResults(results, container, query) {
@@ -73,8 +143,22 @@ export function initSearch() {
       const item = res.item;
       const li = document.createElement('li');
       const a = document.createElement('a');
+      a.className = 'search-result-item';
       a.href = item.uri;
-      a.textContent = item.title;
+
+      const titleEl = document.createElement('div');
+      titleEl.className = 'search-result-title';
+      titleEl.innerHTML = highlightText(item.title, query);
+
+      const snippetText = extractSnippet(item, res.matches, query);
+      const snippetEl = document.createElement('div');
+      snippetEl.className = 'search-result-snippet';
+      snippetEl.innerHTML = highlightText(snippetText, query);
+
+      a.appendChild(titleEl);
+      if (snippetText) {
+        a.appendChild(snippetEl);
+      }
       li.appendChild(a);
       ul.appendChild(li);
     });

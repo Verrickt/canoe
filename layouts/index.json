@@ -11,7 +11,7 @@
         "uri": {{ .RelPermalink | jsonify }},
         "tags": {{ (.Params.tags | default slice) | jsonify }},
         "categories": {{ (.Params.categories | default slice) | jsonify }},
-        "content": {{ .Plain | htmlUnescape | plainify | truncate 400 | jsonify }}
+        "content": {{ .Plain | htmlUnescape | plainify | jsonify }}
       }
     {{- end -}}
   {{- end -}}
