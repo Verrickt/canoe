@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  {{ partial "head-extra.html" . }}
+
+  <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}{{ end }}</title>
+
+  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.BaseURL }}/css/index.css">
+
+  <!-- RSS -->
+  {{ $rssLink := "" }}
+  {{ with .OutputFormats.Get "rss" }}
+    {{ $rssLink = .Permalink }}
+    <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ site.Title }}" />
+    <link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ site.Title }}" />
+  {{ end }}
+
+  <!-- Favicon -->
+  <link href="{{ site.BaseURL }}/favicon.ico" rel="shortcut icon">
+
+  {{ partial "seo.html" . }}
+</head>
+
+<body>
+  {{ partial "navbar.html" . }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{ partial "script.html" . }}
+</body>
+
+</html>

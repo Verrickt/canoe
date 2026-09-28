@@ -1,9 +1,9 @@
-{{ partial "header.html" . }}
-<!-- banner -->
-{{ partialCached "splash.html" . }}
-<!-- banner -->
+{{ define "main" }}
 <main id="index" role="main" class="main-panel">
-  {{partial "waterfall.html" .}} {{ partialCached "footer.html" . }}
+  <!-- banner -->
+  {{ partialCached "splash.html" . }}
+  <!-- banner -->
+  {{ partial "waterfall.html" . }}
+  {{ partialCached "footer.html" . }}
 </main>
-<!-- banner -->
-{{partialCached "script.html" .}}
+{{ end }}

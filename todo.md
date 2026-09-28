@@ -27,14 +27,14 @@
 
 ## Phase 3 · 中改动（模板重组与 SEO）
 
-- [ ] 3.1 新增 `baseof.html`，全部页面改为 block/define 模式，消灭三段式 header/footer/script 拼接
-- [ ] 3.2 按 Hugo 现代布局约定重组：`home.html` / `list.html` / `single.html` / `term.html` / `taxonomy.html` / `404.html`（404 去掉硬编码 `lang="zh-cn"`）
-- [ ] 3.3 清理废弃 API：`.Site.Taxonomies`、`.Data.Terms.Alphabetical`、`{{ template "_internal/pagination.html" }}`、`.Site.LanguageCode` 等
-- [ ] 3.4 删除导航激活态的 URL 切片 hack（`$curType := index $path ...`），改用可靠的 path 匹配
-- [ ] 3.5 修复 `waterfall.html` 中 `.Paginate` 被调用两次的问题
-- [ ] 3.6 分类/标签链接从 `BaseURL` 字符串拼接改为 Hugo 内置路由（`.RelPermalink`），支持子目录部署
-- [ ] 3.7 SEO：补 meta description、OG / Twitter 卡片 partial、canonical 复核；RSS `<link>` 逻辑保留
-- [ ] 3.8 去掉 `window.baseURL` 全局变量，改用 `data-*` 属性或模块内传参
+- [x] 3.1 新增 `baseof.html`，全部页面改为 block/define 模式，消灭三段式 header/footer/script 拼接
+- [x] 3.2 按 Hugo 现代布局约定重组：`home.html` / `list.html` / `single.html` / `term.html` / `taxonomy.html` / `404.html`（404 去掉硬编码 `lang="zh-cn"`）
+- [x] 3.3 清理废弃 API：`.Site.Taxonomies`、`.Data.Terms.Alphabetical`、`{{ template "_internal/pagination.html" }}`、`.Site.LanguageCode` 等
+- [x] 3.4 删除导航激活态的 URL 切片 hack（`$curType := index $path ...`），改用可靠的 path 匹配
+- [x] 3.5 修复 `waterfall.html` 中 `.Paginate` 被调用两次的问题
+- [x] 3.6 分类/标签链接从 `BaseURL` 字符串拼接改为 Hugo 内置路由（`.RelPermalink`），支持子目录部署
+- [x] 3.7 SEO：补 meta description、OG / Twitter 卡片 partial、canonical 复核；RSS `<link>` 逻辑保留
+- [x] 3.8 去掉 `window.baseURL` 全局变量，改用 `data-*` 属性或模块内传参
 
 ## Phase 4 · 大改动（前端资产重建）
 

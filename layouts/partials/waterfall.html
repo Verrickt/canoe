@@ -1,22 +1,29 @@
+{{/*
+  Waterfall list. The paginator is computed exactly once and reused
+  for both the card list and the pagination block.
+*/}}
+{{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts") }}
 <div class="container container-ex">
   <div class="inner">
     {{ if not .IsHome }}
     {{ partial "breadcrumb.html" . }}
     {{ end }}
     <div class="waterfall">
-      {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} {{ range $paginator.Pages }}
+      {{ range $paginator.Pages }}
       <div class="waterfall__item">
         <div class="card post post-summary reveal">
           <div class="card-header postinfo">
             <span class="card-title">
-              <a href="{{ .Permalink }}">{{ .Title }} {{ if .Draft }}:: DRAFT{{end}}</a>
+              <a href="{{ .RelPermalink }}">{{ .Title }} {{ if .Draft }}:: DRAFT{{ end }}</a>
             </span>
             <div class="card-meta">
-              <time>{{ .Date.Format $.Site.Params.dateFormat }}</time>
+              <time>{{ .Date.Format site.Params.dateFormat }}</time>
               {{ with .Params.categories }}
               <address>
                 {{ range . }}
-                <a href='{{$.Site.BaseURL}}/categories/{{ (replace . "#" "%23") | urlize }}'>{{ . }}</a>
+                {{ with site.GetPage (printf "/categories/%s" (. | urlize)) }}
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                {{ end }}
                 {{ end }}
               </address>
               {{ end }}
@@ -25,25 +32,29 @@
 
           <div class="card-content">
             <article class="article">
-              {{.Summary }} {{ if .Truncated }}
-              <a href="{{ .Permalink }}" class="readmore">阅读全文</a>
+              {{ .Summary }} {{ if .Truncated }}
+              <a href="{{ .RelPermalink }}" class="readmore">阅读全文</a>
               {{ end }}
             </article>
 
           </div>
 
-          {{with .Params.tags}}
-          <div class="card-action card-action-links">{{ range . }}
-            <a class="btn btn-secondary" href='{{ $.Site.BaseURL }}/tags/{{ (replace . "#" "%23") | urlize }}'>{{ . }}</a>{{ end }}
+          {{ with .Params.tags }}
+          <div class="card-action card-action-links">
+            {{ range . }}
+            {{ with site.GetPage (printf "/tags/%s" (. | urlize)) }}
+            <a class="btn btn-secondary" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ end }}
+            {{ end }}
           </div>
-          {{end}}
+          {{ end }}
         </div>
       </div>
       {{ end }}
     </div>
     <div class="center">
       <div class="pagination">
-        {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }} {{ template "_internal/pagination.html" . }}
+        {{ partial "pagination.html" (dict "pag" $paginator "root" $) }}
       </div>
     </div>
   </div>

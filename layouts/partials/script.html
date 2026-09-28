@@ -1,16 +1,18 @@
-<script type="text/javascript" src="{{ $.Site.BaseURL }}/js/index.js"></script>
-<!---->
-{{ with .Site.Params.analytics }}
-{{ if or .gtm_id .ga_id }}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ default .ga_id .gtm_id }}"></script>
+{{/*
+  Site-wide scripts at the end of <body> (included from baseof.html).
+
+  `data-baseurl` on the script tag replaces the old `window.baseURL`
+  global: the module can read its own dataset instead of a global.
+*/}}
+{{ $analytics := site.Params.analytics | default dict }}
+{{ if or $analytics.gtm_id $analytics.ga_id }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ default $analytics.ga_id $analytics.gtm_id }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
-  gtag('config', '{{ default .ga_id .gtm_id }}');
+  gtag('config', '{{ default $analytics.ga_id $analytics.gtm_id }}');
 </script>
-{{ end }} {{ end }}
+{{ end }}
 
-</body>
-
-</html>
+<script type="text/javascript" src="{{ site.BaseURL }}/js/index.js" data-baseurl="{{ site.BaseURL }}"></script>

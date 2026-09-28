@@ -1,0 +1,145 @@
+{{/* Resolve the RSS link for the current page (falls back to site-wide feed). */}}
+{{ $rss := "" }}
+{{ with .OutputFormats.Get "rss" }}{{ $rss = .Permalink }}{{ end }}
+
+<div class="navbar-fixed">
+  <nav class="navbar">
+    <div class="nav-container container">
+      <div class="nav-wrapper inner">
+        <a href="javascript:void(0)" data-activates="sidebar" class="button-collapse hide-on-large-only">
+          <i class="material-icons">menu</i>
+        </a>
+        <a href="{{ site.BaseURL }}" class="brand-logo">
+          <i class="material-icons hide-on-med-and-down">restaurant_menu</i>
+          {{ site.Title }}
+        </a>
+        {{ with site.Menus.main }}
+        <ul class=" nav-menu tabs tabs-transparent hide-on-med-and-down">
+          {{ range . }}
+          {{/* Reliable active match: compare the menu target path with the current page path. */}}
+          {{ $menuPage := site.GetPage (strings.TrimSuffix "/" .URL) }}
+          {{ $menuPath := "" }}
+          {{ with $menuPage }}{{ $menuPath = strings.TrimSuffix "/" .RelPermalink }}{{ end }}
+          {{ $pagePath := strings.TrimSuffix "/" $.RelPermalink }}
+          {{ $active := false }}
+          {{ if $menuPage }}
+            {{ $active = or (eq $pagePath $menuPath) (and (ne $menuPath "") (hasPrefix $pagePath $menuPath)) }}
+          {{ else if eq .URL "/" }}
+            {{ $active = .IsRoot }}
+          {{ end }}
+          <li class="tab">
+            <a href="{{ .URL }}" class='{{ if $active }} active {{ end }}'>
+              {{ .Name }}
+            </a>
+          </li>
+          {{end}}
+        </ul>
+        {{end}}
+
+        <form class="nav-form hide-on-small-and-down">
+          <div class="form-group">
+            <i class="material-icons">search</i>
+            <input type='text' placeholder="输入搜索关键字" />
+          </div>
+          <div class="form-popout">
+            <div class="search-result">
+              <label>暂无搜索结果</label>
+              <ul>
+              </ul>
+            </div>
+          </div>
+        </form>
+
+
+        <ul class=" nav-menu apps">
+          <li>
+            <a class="search-btn hide-on-med-and-up" href='#search-panel'>
+              <i class="material-icons">search</i>
+            </a>
+          </li>
+          <li>
+            <a class="term-btn hide-on-small-and-down" href='#term-panel'>
+              <i class="material-icons">apps</i>
+            </a>
+          </li>
+          {{ with $rss }}
+          <li>
+            <a class="rss-btn hide-on-small-and-down" href='{{ . }}' target="_blank">
+              <i class="material-icons">rss_feed</i>
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- mobile search panel -->
+{{ partial "msearch.html" . }}
+<!-- END: mobile search panel -->
+
+<div class="taxonomy">
+  <div class="container">
+    <div class="inner">
+      <div class="taxonomy-panel">
+        {{ with site.Menus.taxonomy }}{{ range . }}
+        <div class='group'>
+          <label>{{ .Name | title }}</label>
+          <ul>
+            {{ $taxonomy := site.GetPage "/" .Identifier }}
+            {{ with $taxonomy }}
+            {{ range .Data.Terms.ByCount }}
+            <li>
+              <a class="btn btn-secondary" href="{{ .Page.RelPermalink }}"> {{ .Page.Title }}
+                <span class="badge">{{ .Count }}</span>
+              </a>
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }} {{end }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ with site.Menus.main }}
+<ul class="side-nav" id="sidebar">
+  {{ range . }}
+  {{ $menuPage := site.GetPage (strings.TrimSuffix "/" .URL) }}
+  {{ $menuPath := "" }}
+  {{ with $menuPage }}{{ $menuPath = strings.TrimSuffix "/" .RelPermalink }}{{ end }}
+  {{ $pagePath := strings.TrimSuffix "/" $.RelPermalink }}
+  {{ $active := false }}
+  {{ if $menuPage }}
+    {{ $active = or (eq $pagePath $menuPath) (and (ne $menuPath "") (hasPrefix $pagePath $menuPath)) }}
+  {{ else if eq .URL "/" }}
+    {{ $active = .IsRoot }}
+  {{ end }}
+  <li>
+    <a href="{{ .URL }}" class='{{ if $active }} active {{ end }}'>
+      {{ .Name }}
+    </a>
+  </li>
+  {{end}}
+  <li>
+    <a class="term-btn-mobile hide-on-med-only" href='{{ (site.GetPage "/categories").RelPermalink }}'>
+      Categories
+    </a>
+  </li>
+  <li>
+    <a class="term-btn-mobile hide-on-med-only" href='{{ (site.GetPage "/tags").RelPermalink }}'>
+      Tags
+    </a>
+  </li>
+  {{ with $rss }}
+  <li>
+    <a class="rss-btn-mobile hide-on-med-only" href='{{ . }}' target="_blank">
+      Rss
+    </a>
+  </li>
+  {{ end }}
+</ul>
+{{end}}
