@@ -42,7 +42,7 @@
   - 忠实还原现有视觉：配色、卡片、瀑布流（columns）、splash、TOC 面板、Material Icons
   - Roboto 字体本地 `@font-face` 保留；瀑布流 columns 加现代回退
   - `css.Sass` + `minify` + `fingerprint` + SRI
-  - 以 `exampleSite/public/` 旧版 HTML 与 `images/screenshot.png` 为基准逐页视觉比对
+  - 以 `/ref/public/` 旧版 HTML 为基准逐页比对
 - [ ] 4.2 JS 模块化：`assets/js/` 源码模块 + `js.Build`（esbuild）
   - `search.js`（Fuse）、`toc.js`、`nav.js`（侧栏/下拉/tabs 指示器）、`splash.js`（canvas 雪花特效保留）
   - 删除混淆产物 `index.js` 与 vendored 的 `av-min.js` / `Valine.min.js`（Valine/LeanCloud 已废弃）
