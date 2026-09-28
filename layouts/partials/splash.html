@@ -9,6 +9,3 @@
     <p class="desc">{{ with .Site.Params.description }}{{ . }}{{ end }}</p>
   </div>
 </section>
-{{ if eq true .Site.Params.hitokoto }}
-<script>window["getHitokoto"] = true;</script>
-{{ end }}

@@ -28,9 +28,6 @@ hasCJKLanguage = true
   # 首页横幅的背景链接, home banner's background url.
   splash_bg = "/img/bg.jpg"
 
-  # 是否使用一言, if using hitokoto(dynamic moto in splash screen)
-  hitokoto = false
-
   # 是否使用Canvas动态背景, if using canvas dynamic background (nest.js)
   nest_bg = true
 

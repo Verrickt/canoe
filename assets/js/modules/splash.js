@@ -1,11 +1,10 @@
 /**
  * Splash Module
- * Handles canvas snow particle background animation and optional Hitokoto quote fetch.
+ * Handles canvas snow particle background animation.
  */
 
 export function initSplash() {
   initCanvas();
-  initHitokoto();
 }
 
 /**
@@ -125,25 +124,4 @@ function initCanvas() {
   }
 
   loop();
-}
-
-/**
- * Hitokoto Quote Fetcher
- */
-function initHitokoto() {
-  if (!window.getHitokoto) return;
-
-  const descEl = document.querySelector('.splash .desc');
-  if (!descEl) return;
-
-  fetch('https://v1.hitokoto.cn/?encode=json')
-    .then((res) => res.json())
-    .then((data) => {
-      if (data && data.hitokoto) {
-        descEl.textContent = `${data.hitokoto} —— ${data.from || ''}`;
-      }
-    })
-    .catch(() => {
-      // Fallback silently if offline or request fails
-    });
 }
