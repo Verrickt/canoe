@@ -74,7 +74,7 @@ export function initSearch() {
       .trim()
       .split(/\s+/)
       .filter((w) => w.length > 0)
-      .map(escapeRegExp);
+      .map((w) => escapeRegExp(escapeHtml(w)));
     if (words.length === 0) return escaped;
 
     const pattern = new RegExp(`(${words.join('|')})`, 'gi');
@@ -85,13 +85,86 @@ export function initSearch() {
     const content = (item.content || '').replace(/\s+/g, ' ').trim();
     if (!content) return '';
 
-    // 1. Match from Fuse.js content matches
-    const contentMatch = matches?.find((m) => m.key === 'content');
-    if (contentMatch && contentMatch.indices && contentMatch.indices.length > 0) {
-      const [startIdx, endIdx] = contentMatch.indices[0];
-      const snippetRadius = 45;
-      const start = Math.max(0, startIdx - snippetRadius);
-      const end = Math.min(content.length, endIdx + snippetRadius + 1);
+    const queryWords = (query || '')
+      .trim()
+      .split(/\s+/)
+      .filter((w) => w.length > 0);
+
+    // 1. Exact keyword search in content (similar to hugo-theme-stack)
+    let matchRanges = [];
+    if (queryWords.length > 0) {
+      const pattern = new RegExp(queryWords.map(escapeRegExp).join('|'), 'gi');
+      let m;
+      while ((m = pattern.exec(content)) !== null) {
+        matchRanges.push({ start: m.index, end: m.index + m[0].length });
+      }
+    }
+
+    // 2. Fallback to Fuse fuzzy content matches if no exact match in content
+    if (matchRanges.length === 0 && matches) {
+      const contentMatch = matches.find((m) => m.key === 'content');
+      if (contentMatch && contentMatch.indices && contentMatch.indices.length > 0) {
+        // Sort by match length descending to pick substantial word matches over 1-char noise
+        const sorted = [...contentMatch.indices].sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]));
+        const best = sorted[0];
+        matchRanges.push({ start: best[0], end: best[1] + 1 });
+      }
+    }
+
+    // 3. Fallback: if keyword matched tags or categories but not in content, show tag context
+    if (matchRanges.length === 0 && queryWords.length > 0) {
+      const hasTagMatch = (item.tags || []).some((t) =>
+        queryWords.some((w) => t.toLowerCase().includes(w.toLowerCase()))
+      );
+      const hasCatMatch = (item.categories || []).some((c) =>
+        queryWords.some((w) => c.toLowerCase().includes(w.toLowerCase()))
+      );
+
+      let prefix = '';
+      if (hasTagMatch && item.tags?.length) {
+        prefix = `[标签: ${item.tags.join(', ')}] `;
+      } else if (hasCatMatch && item.categories?.length) {
+        prefix = `[分类: ${item.categories.join(', ')}] `;
+      }
+
+      if (prefix) {
+        const remainingLen = 160 - prefix.length;
+        return prefix + content.slice(0, remainingLen) + (content.length > remainingLen ? '...' : '');
+      }
+    }
+
+    // 4. Construct snippet around match ranges with generous radius (Stack-inspired)
+    if (matchRanges.length > 0) {
+      const offset = 80; // Extended radius before and after matched keyword
+      const charLimit = 180;
+
+      const first = matchRanges[0];
+      let start = Math.max(0, first.start - offset);
+      let end = Math.min(content.length, first.end + offset);
+
+      // Merge adjacent or nearby matches within the snippet budget
+      for (let i = 1; i < matchRanges.length; i++) {
+        const next = matchRanges[i];
+        if (next.start <= end + 30 && (next.end + offset - start) <= charLimit + 40) {
+          end = Math.min(content.length, next.end + offset);
+        } else {
+          break;
+        }
+      }
+
+      // Adjust boundaries to clean word boundaries without truncating the matched keyword
+      if (start > 0) {
+        const spaceIdx = content.indexOf(' ', start);
+        if (spaceIdx !== -1 && spaceIdx - start < 15 && spaceIdx < first.start) {
+          start = spaceIdx + 1;
+        }
+      }
+      if (end < content.length) {
+        const spaceIdx = content.lastIndexOf(' ', end);
+        if (spaceIdx !== -1 && end - spaceIdx < 15 && spaceIdx > first.end) {
+          end = spaceIdx;
+        }
+      }
 
       let snippet = content.slice(start, end).trim();
       if (start > 0) snippet = '...' + snippet;
@@ -99,25 +172,8 @@ export function initSearch() {
       return snippet;
     }
 
-    // 2. Fallback: match query terms in content directly
-    if (query) {
-      const lowerContent = content.toLowerCase();
-      const words = query.toLowerCase().trim().split(/\s+/);
-      for (const w of words) {
-        const idx = lowerContent.indexOf(w);
-        if (idx !== -1) {
-          const start = Math.max(0, idx - 40);
-          const end = Math.min(content.length, idx + w.length + 50);
-          let snippet = content.slice(start, end).trim();
-          if (start > 0) snippet = '...' + snippet;
-          if (end < content.length) snippet = snippet + '...';
-          return snippet;
-        }
-      }
-    }
-
-    // 3. Fallback: preview start of content
-    return content.slice(0, 90) + (content.length > 90 ? '...' : '');
+    // 5. Default preview of start of content
+    return content.slice(0, 150) + (content.length > 150 ? '...' : '');
   }
 
   function renderResults(results, container, query) {
