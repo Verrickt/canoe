@@ -119,11 +119,13 @@
     height: 30px;
     padding: 0 1rem;
     box-shadow: none;
-    background-color: #b0bec5;
-    color: #ffffff;
+    background-color: var(--btn-secondary-bg, #b0bec5);
+    color: var(--btn-secondary-color, #ffffff);
+    transition: background-color $transition-normal, color $transition-normal, box-shadow $transition-fast;
 
     &:hover {
-      background-color: var(--secondary-color, #607d8b);
+      background-color: var(--btn-secondary-hover-bg, var(--secondary-color, #607d8b));
+      color: var(--btn-secondary-hover-color, #ffffff);
       box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
     }
   }
