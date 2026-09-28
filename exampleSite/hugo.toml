@@ -107,5 +107,41 @@ hasCJKLanguage = true
   name = "Weibo"
   url = "http://weibo.com/kevinclasky"
 
-[blackfriday]
-  extensions = ["laxHtmlBlocks","noEmptyLineBeforeBlock"]
+# ---------------------------------------------------------------
+# Markup configuration (replaces the removed legacy [blackfriday] section)
+# ---------------------------------------------------------------
+[markup]
+  # Default is goldmark since Hugo 0.60; blacklist raw HTML only if you know what you are doing.
+  defaultMarkdownHandler = "goldmark"
+
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      typographer = true
+    [markup.goldmark.parser]
+      # The old blackfriday config allowed raw HTML; keep the same behaviour.
+      wrapStandAloneImageWithinParagraph = false
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+    [markup.goldmark.renderer]
+      # Allow raw HTML in markdown content (same as the legacy laxHtmlBlocks usage).
+      unsafe = true
+
+  [markup.highlight]
+    # Server-side syntax highlighting via Chroma (replaces client-side highlight.js).
+    # Set `noHighlight`/`codeFences` per-use if needed; these are site-wide defaults.
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    # Material-ish palette that matches the theme's visual style.
+    style = "monokai"
+    tabWidth = 4
+
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false

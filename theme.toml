@@ -2,11 +2,20 @@
 name = "canoe"
 license = "MIT"
 licenselink = "https://github.com/stkevintan/canoe/blob/master/LICENSE.md"
-description = "A beautifull and powerfull material design theme of hugo"
+description = "A beautiful and powerful Material Design theme for Hugo (modernized for Hugo 0.134+)"
 homepage = "https://github.com/stkevintan/canoe"
-tags = ['blog','material design']
-features = ['toc','waterfall layout','disqus']
-min_version = "0.31.1"
+tags = ['blog', 'material design', 'responsive', 'dark mode', 'search']
+features = [
+  'table of contents',
+  'waterfall layout',
+  'syntax highlighting (built-in Chroma)',
+  'built-in search (Fuse.js)',
+  'MathJax (opt-in via front matter)',
+  'dark mode (auto + manual)',
+  'responsive design',
+  'admonition / video / music shortcodes'
+]
+min_version = "0.134.0"
 
 [author]
   name = "Kevin Tan"

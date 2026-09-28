@@ -12,10 +12,10 @@
 
 ## Phase 1 · 微改动（清理与配置）
 
-- [ ] 1.1 工作区清理：删除 `exampleSite/public/` 残留构建产物；`.gitignore` 补充 `exampleSite/public/`、`.hugo_build.lock`
-- [ ] 1.2 `exampleSite/config.toml` → `hugo.toml`：删除已失效的 `[blackfriday]` 段；新增 `[markup]`（Goldmark + Chroma 代码高亮配置）
-- [ ] 1.3 `theme.toml` 更新：`min_version` 提升到 0.134+，features/tags 描述刷新
-- [ ] 1.4 `archetypes/default.md` 现代写法（`.Name` / `.Date`）
+- [x] 1.1 工作区清理：删除 `exampleSite/public/` 残留构建产物；`.gitignore` 补充 `exampleSite/public/`、`.hugo_build.lock`
+- [x] 1.2 `exampleSite/config.toml` → `hugo.toml`：删除已失效的 `[blackfriday]` 段；新增 `[markup]`（Goldmark + Chroma 代码高亮配置）
+- [x] 1.3 `theme.toml` 更新：`min_version` 提升到 0.134+，features/tags 描述刷新
+- [x] 1.4 `archetypes/default.md` 现代写法（`.Name` / `.Date`）
 
 ## Phase 2 · 小改动（依赖与短代码）
 
