@@ -91,14 +91,14 @@
   &:disabled,
   &[disabled] {
     pointer-events: none;
-    background-color: #dfdfdf !important;
+    background-color: var(--btn-disabled-bg, #dfdfdf) !important;
     box-shadow: none;
-    color: #9f9f9f !important;
+    color: var(--btn-disabled-color, #9f9f9f) !important;
     cursor: default;
 
     &:hover {
-      background-color: #dfdfdf !important;
-      color: #9f9f9f !important;
+      background-color: var(--btn-disabled-bg, #dfdfdf) !important;
+      color: var(--btn-disabled-color, #9f9f9f) !important;
     }
   }
 }

@@ -223,7 +223,7 @@
     line-height: 48px;
 
     &.active {
-      background-color: rgba(0, 0, 0, 0.05);
+      background-color: var(--surface-hover, rgba(0, 0, 0, 0.05));
     }
 
     > a {
@@ -237,12 +237,12 @@
       transition: background-color 0.2s;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: var(--surface-hover, rgba(0, 0, 0, 0.05));
       }
 
       &.active {
         color: var(--primary-color, #3f51b5);
-        background-color: rgba(63, 81, 181, 0.08);
+        background-color: var(--surface-hover, rgba(63, 81, 181, 0.08));
       }
 
       i,
@@ -393,7 +393,7 @@ body.mobile-sidebar-active {
       transition: background-color 0.2s, color 0.2s;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: var(--surface-hover, rgba(0, 0, 0, 0.05));
       }
     }
 
@@ -401,7 +401,7 @@ body.mobile-sidebar-active {
       background-color: var(--primary-color, #3f51b5);
 
       a {
-        color: #ffffff;
+        color: var(--text-on-primary, #ffffff);
       }
     }
 

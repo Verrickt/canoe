@@ -263,6 +263,6 @@ ol:not(.browser-default) {
 }
 
 ::selection {
-  background: $selection-color;
-  color: #fff;
+  background: var(--selection-bg, #{$selection-color});
+  color: var(--selection-color, #ffffff);
 }
