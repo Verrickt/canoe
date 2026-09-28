@@ -1,65 +1,28 @@
 {{/*
+  Music 163 (网易云音乐) outchain player.
 
-    ## Music 163
+  Usage:
 
-    ### Because of music copyright issue, this shortcode is invalid now.
-    ### 由于音乐版权问题，该插件已经无法继续正常使用。
+    {{% music "3950552" %}}
+    {{% music id="3950552" auto="1" %}}
 
-    ### Params:
-
-    - `id`
-
-      required param
-      you can extract from music url
-      url format "http://music.163.com/#/song?id=3950552"
-
-    - Fiddle `auto`
-
-      optional param
-      default value 0
-      you can overwrite it with 1
-
-    ### Examples:
-
-    - Simple
-
-      {{% music "3950552" %}}
-      {{% music "3950552" "1" %}}
-
-    - Named Params
-
-      {{% music id="3950552" %}}
-      {{% music id="3950552" auto="1" %}}
-
+  NOTE: 网易云音乐外链播放器依赖其版权策略,部分歌曲可能无法播放
+  (版权风险详见 README)。播放器以 iframe 形式嵌入,由网易云音乐官方提供。
 */}}
+{{ $id := or (.Get "id") (.Get 0) }}
+{{ $auto := or (.Get "auto") (.Get 1) "0" }}
 
-{{/* DEFAULTS */}}
-{{ $auto := "0" }}
-
-{{ if .IsNamedParams }}
-
-  <iframe
-    class="music163"
-    frameborder="no"
-    border="0"
-    marginwidth="0"
-    marginheight="0"
-    width="330"
-    height="86"
-    src="//music.163.com/outchain/player?type=2&id={{ .Get "id" }}&auto={{ or (.Get "auto") $auto }}&height=66">
-  </iframe>
-
+{{ if $id }}
+<iframe
+  class="music163"
+  frameborder="no"
+  border="0"
+  marginwidth="0"
+  marginheight="0"
+  width="330"
+  height="86"
+  src="https://music.163.com/outchain/player?type=2&id={{ $id }}&auto={{ $auto }}&height=66">
+</iframe>
 {{ else }}
-
-  <iframe
-    class="music163"
-    frameborder="no"
-    border="0"
-    marginwidth="0"
-    marginheight="0"
-    width="330"
-    height="86"
-    src="//music.163.com/outchain/player?type=2&id={{ .Get 0 }}&auto={{ if isset .Params 1 }}{{ .Get 1 }}{{ else }}{{ $auto }}{{ end }}&height=66">
-  </iframe>
-
+{{ errorf "music shortcode: id is required (page %s)" .Page.Path }}
 {{ end }}

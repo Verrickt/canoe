@@ -1,10 +1,22 @@
-{{ $type := or (.Get "type") "note" }} {{ $title := or (.Get "title") "注意" }}
+{{/*
+  Admonition.
+
+  Usage:
+
+    {{% admonition type="warning" title="自定义标题" %}} ... {{% /admonition %}}
+    {{% admonition %}} ... {{% /admonition %}}  (type defaults to "note", title defaults to "注意")
+
+  Supported types: note (default) / warning. Any other type falls back to note styling.
+*/}}
+{{ $type := lower (or (.Get "type") (.Get 0) "note") }}
+{{ $title := or (.Get "title") (.Get 1) "注意" }}
+{{ if not (in (slice "note" "warning") $type) }}{{ $type = "note" }}{{ end }}
 
 <div class="admonition {{ $type }}">
   <p class="admonition-title">
     <i class="material-icons">
-      {{ if eq $type "warning" }} warning {{ else }} assistant_photo {{ end }}
+      {{ if eq $type "warning" }}warning{{ else }}assistant_photo{{ end }}
     </i>{{ $title }}
   </p>
-  <p>{{ printf "%s" .Inner | markdownify }}</p>
+  <div class="admonition-content">{{ .Inner | markdownify }}</div>
 </div>

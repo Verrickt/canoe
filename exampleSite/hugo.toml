@@ -33,20 +33,10 @@ hasCJKLanguage = true
 
   # 是否使用动态加载效果, if using fade effect while loading (scroll-reveal.js)
   reveal_effect = true
-  
-# comment settings, support 'valine' and 'disqus'.
-# more about 'valine', ref: http://valine.js.org/
-[params.comment]
-  type = "valine" # or 'disqus'
 
-[params.comment.valine]
-  id = "< the appId >"
-  key = "< the appKey >"
-  placeholder = "< placeholder >"
-  avatar = "retro"
-
-[params.comment.disqus]
-  shortname = '< short name >'
+# 评论默认不集成。如需接入自建评论系统,
+# 请在你的站点下创建 layouts/partials/comments.html 并自行实现。
+# 详见 README "评论接入" 一节。
 
 
 # Main menu
@@ -106,6 +96,11 @@ hasCJKLanguage = true
   pre = "<svg class='svg-icons svg-icons-sina-weibo'><use xlink:href='#svg-icons-sina-weibo'></use></svg>"
   name = "Weibo"
   url = "http://weibo.com/kevinclasky"
+
+# 可选: Google Analytics (gtag.js)
+# 配置 analytics.id 后自动输出 gtag 脚本; 不配置则不加载任何统计脚本。
+[params.analytics]
+  # id = "G-XXXXXXXXXX"
 
 # ---------------------------------------------------------------
 # Markup configuration (replaces the removed legacy [blackfriday] section)
