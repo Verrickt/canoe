@@ -26,10 +26,10 @@ hasCJKLanguage = true
   splash_bg = "/img/bg.jpg"
 
   # 是否使用一言, if using hitokoto(dynamic moto in splash screen)
-  hitokoto = true
+  hitokoto = false
 
   # 是否使用Canvas动态背景, if using canvas dynamic background (nest.js)
-  nest_bg = false
+  nest_bg = true
 
   # 是否使用动态加载效果, if using fade effect while loading (scroll-reveal.js)
   reveal_effect = true

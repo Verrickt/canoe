@@ -25,10 +25,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/ocean.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ $.Site.BaseURL }}/css/index.css">
+
   <!-- RSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="{{ $.Site.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-  <link href="{{ $.Site.RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
+  {{ $rssLink := "" }}
+  {{ with .OutputFormats.Get "rss" }}
+    {{ $rssLink = .Permalink }}
+    <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+    <link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  {{ end }}
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -96,11 +101,13 @@
                 <i class="material-icons">apps</i>
               </a>
             </li>
+            {{ if $rssLink }}
             <li>
-              <a class="rss-btn hide-on-small-and-down" href='{{ $.Site.RSSLink }}' target="_blank">
+              <a class="rss-btn hide-on-small-and-down" href='{{ $rssLink }}' target="_blank">
                 <i class="material-icons">rss_feed</i>
               </a>
             </li>
+            {{ end }}
           </ul>
         </div>
       </div>
@@ -153,10 +160,14 @@
         Tags
       </a>
     </li>
+    {{ if $rssLink }}
     <li>
-      <a class="rss-btn-mobile hide-on-med-only" href='{{ $.Site.RSSLink }}' target="_blank">
+      <a class="rss-btn-mobile hide-on-med-only" href='{{ $rssLink }}' target="_blank">
         Rss
       </a>
     </li>
+    {{ end }}
   </ul>
   {{end}}
+</body>
+</html>
