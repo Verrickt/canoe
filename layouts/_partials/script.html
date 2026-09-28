@@ -4,15 +4,17 @@
   `data-baseurl` on the script tag replaces the old `window.baseURL`
   global: the module can read its own dataset instead of a global.
 */}}
-{{ $analytics := site.Params.analytics | default dict }}
-{{ if or $analytics.gtm_id $analytics.ga_id }}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ default $analytics.ga_id $analytics.gtm_id }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', '{{ default $analytics.ga_id $analytics.gtm_id }}');
-</script>
+{{ with site.Params.analytics }}
+  {{ $analyticsId := or .gtm_id .ga_id }}
+  {{ with $analyticsId }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ . }}');
+  </script>
+  {{ end }}
 {{ end }}
 
 {{ $jsOpts := dict "minify" true "target" "es2020" }}

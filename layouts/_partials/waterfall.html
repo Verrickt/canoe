@@ -2,7 +2,11 @@
   Waterfall list. The paginator is computed exactly once and reused
   for both the card list and the pagination block.
 */}}
-{{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts") }}
+{{ $pages := .Pages }}
+{{ if .IsHome }}
+  {{ $pages = where site.RegularPages "Type" "posts" }}
+{{ end }}
+{{ $paginator := .Paginate $pages }}
 <div class="container container-ex">
   <div class="inner">
     {{ if not .IsHome }}
@@ -17,13 +21,11 @@
               <a href="{{ .RelPermalink }}">{{ .Title }} {{ if .Draft }}:: DRAFT{{ end }}</a>
             </span>
             <div class="card-meta">
-              <time>{{ .Date.Format site.Params.dateFormat }}</time>
-              {{ with .Params.categories }}
+              <time>{{ .Date.Format (site.Params.dateFormat | default "2006-01-02") }}</time>
+              {{ with .GetTerms "categories" }}
               <address>
                 {{ range . }}
-                {{ with site.GetPage (printf "/categories/%s" (. | urlize)) }}
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                {{ end }}
+                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
                 {{ end }}
               </address>
               {{ end }}
@@ -39,12 +41,10 @@
 
           </div>
 
-          {{ with .Params.tags }}
+          {{ with .GetTerms "tags" }}
           <div class="card-action card-action-links">
             {{ range . }}
-            {{ with site.GetPage (printf "/tags/%s" (. | urlize)) }}
-            <a class="btn btn-secondary" href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{ end }}
+            <a class="btn btn-secondary" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
             {{ end }}
           </div>
           {{ end }}

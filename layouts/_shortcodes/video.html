@@ -15,10 +15,10 @@
 {{ $poster := .Get "poster" }}
 
 {{ if or $mp4 $webm $ogv }}
-<video class="video-player" controls preload="metadata"{{ with $poster }} poster="{{ . }}"{{ end }}>
-  {{ with $mp4 }}<source src="{{ . }}" type="video/mp4">{{ end }}
-  {{ with $webm }}<source src="{{ . }}" type="video/webm">{{ end }}
-  {{ with $ogv }}<source src="{{ . }}" type="video/ogg">{{ end }}
+<video class="video-player" controls preload="metadata"{{ with $poster }} poster="{{ . | relURL }}"{{ end }}>
+  {{ with $mp4 }}<source src="{{ . | relURL }}" type="video/mp4">{{ end }}
+  {{ with $webm }}<source src="{{ . | relURL }}" type="video/webm">{{ end }}
+  {{ with $ogv }}<source src="{{ . | relURL }}" type="video/ogg">{{ end }}
   你的浏览器不支持 HTML5 video,请升级浏览器后重试。
 </video>
 {{ else }}

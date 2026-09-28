@@ -1,0 +1,10 @@
+<section class="breadcrumb-root">
+  <div class="breadcrumbs" role="navigation" aria-label="breadcrumbs navigation">
+    {{ range .Ancestors.Reverse }}
+    <a class="breadcrumb" href="{{ .RelPermalink }}">
+      {{- if .IsHome }}<i class="material-icons">location_on</i>Home{{ else }}{{ .LinkTitle }}{{ end -}}
+    </a>
+    {{ end }}
+    <span class="breadcrumb">{{ .LinkTitle }}</span>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 # Hugo Canoe Theme
 
-> A beautiful, modern, and powerful Material Design theme for Hugo (0.134+).  
+> A beautiful, modern, and powerful Material Design theme for Hugo (0.146+ / 0.166+).  
 > 优雅、轻量、高可用的 Material Design 静态博客主题（针对现代 Hugo 全面重构，构建零 npm 依赖）。
 
 ---
@@ -35,7 +35,7 @@
 
 ## 运行要求 (Requirements)
 
-* **Hugo Extended** $\ge$ **0.134.0**（需要 Extended 版本以支持 Sass/SCSS 编译）
+* **Hugo Extended** $\ge$ **0.146.0**（推荐 0.166+；需要 Extended 版本以支持 Sass/SCSS 编译）
 
 ---
 
@@ -77,7 +77,7 @@ hugo server -D
 
 ```toml
 baseURL = "https://example.org/"
-languageCode = "zh-cn"
+locale = "zh-cn"
 title = "My Blog"
 theme = "canoe"
 

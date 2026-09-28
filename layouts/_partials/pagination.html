@@ -7,8 +7,8 @@
   Produces the same markup as Hugo's old _internal/pagination.html:
   <ul class="pagination"> ... </ul>
 */}}
-{{ $pag := .pag }}
-{{ if $pag }}
+{{ with .pag }}
+{{ $pag := . }}
 <nav role="navigation" aria-label="pagination">
   <ul class="pagination">
     {{ with $pag.First }}

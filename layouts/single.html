@@ -19,27 +19,25 @@
                 <span class="card-title">{{ .Title }} {{ if .Draft }}:: DRAFT{{ end }}</span>
               </div>
               <div class="card-header date">
-                {{ with .Params.categories }}
+                {{ with .GetTerms "categories" }}
                 <div class="group">
                   <i class="material-icons">book</i>
                   <address>
                     归档：{{ range . }}
-                    {{ with site.GetPage (printf "/categories/%s" (. | urlize)) }}
-                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>&nbsp;
-                    {{ end }}
+                    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>&nbsp;
                     {{ end }}
                   </address>
                 </div>
                 {{ end }}
                 <div class="group">
                   <i class="material-icons">flag</i>
-                  <time>创建：{{ .Date.Format site.Params.dateFormat }}
+                  <time>创建：{{ .Date.Format (site.Params.dateFormat | default "2006-01-02") }}
                   </time>
                 </div>
                 {{ if ne .Lastmod .Date }}
                 <div class="group">
                   <i class="material-icons">mode_edit</i>
-                  <time>修改：{{ .Lastmod.Format site.Params.dateFormat }}
+                  <time>修改：{{ .Lastmod.Format (site.Params.dateFormat | default "2006-01-02") }}
                   </time>
                 </div>
                 {{ end }}
@@ -64,18 +62,16 @@
                 </article>
 
               </div>
-              {{ with .Params.tags }}
+              {{ with .GetTerms "tags" }}
               <div class="card-action card-action-links">
                 {{ range . }}
-                {{ with site.GetPage (printf "/tags/%s" (. | urlize)) }}
-                <a class="btn btn-secondary" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                {{ end }}
+                <a class="btn btn-secondary" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
                 {{ end }}
               </div>
               {{ end }}
               {{ if and (ne .Params.type "about") (ne .Params.comments false) }}
                 {{ $comments := partial "comments.html" . }}
-                {{ with (trim $comments " \t\r\n") }}
+                {{ with (strings.Trim $comments " \t\r\n") }}
                 <div class="card-action comments-section">
                   <div class="comments">
                     {{ . | safeHTML }}
@@ -86,21 +82,17 @@
 
               {{ if eq .Type "posts" }}
               <div class="pagination-single">
-                {{ with .Prev }}
-                {{ if eq .Type "posts" }}
+                {{ with .PrevInSection }}
                 <span class="pagination-item previous">
                   <i class="material-icons">navigate_before</i>
-                  <a href="{{ .RelPermalink }}" rel="prev">{{ .Title }}</a>
+                  <a href="{{ .RelPermalink }}" rel="prev">{{ .LinkTitle }}</a>
                 </span>
                 {{ end }}
-                {{ end }}
-                {{ with .Next }}
-                {{ if eq .Type "posts" }}
+                {{ with .NextInSection }}
                 <span class="pagination-item next">
-                  <a href="{{ .RelPermalink }}" rel="next">{{ .Title }}</a>
+                  <a href="{{ .RelPermalink }}" rel="next">{{ .LinkTitle }}</a>
                   <i class="material-icons">navigate_next</i>
                 </span>
-                {{ end }}
                 {{ end }}
               </div>
               {{ end }}

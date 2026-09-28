@@ -1,5 +1,5 @@
 baseURL = "https://example.org"
-languageCode = "zh-cn"
+locale = "zh-cn"
 title = "Hugo Canoe Theme"
 
 

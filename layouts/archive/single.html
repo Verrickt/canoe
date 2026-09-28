@@ -5,7 +5,7 @@
       <div class="no-toc">
         {{ partial "breadcrumb.html" . }}
         <ul class="collapsible popout reveal" data-collapsible="accordion">
-          {{ $posts := site.RegularPages }}{{ if site.Home }}{{ $posts = where site.RegularPages "Type" "posts" }}{{ end }}
+          {{ $posts := where site.RegularPages "Type" "posts" }}
           {{ range $posts.GroupByDate "01 - 2006" }}
           <li>
             <div class="collapsible-header">

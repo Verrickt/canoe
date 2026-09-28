@@ -1,0 +1,16 @@
+<section class="splash">
+  <div class="splash-bg"{{ with site.Params.splash_bg }} style="background-image:url('{{ . | relURL }}')"{{ end }}>
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="splash-content container">
+    {{ with site.Params.logo }}
+    <img class="avatar reveal" src="{{ . | relURL }}" />
+    {{ end }}
+    {{ with site.Params.author }}
+    <h3 class="nickname">{{ . }}</h3>
+    {{ end }}
+    {{ with site.Params.description }}
+    <p class="desc">{{ . }}</p>
+    {{ end }}
+  </div>
+</section>

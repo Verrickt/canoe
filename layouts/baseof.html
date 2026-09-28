@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}">
+<html lang="{{ site.Language.Locale }}">
 
 <head>
   <meta charset="UTF-8">
@@ -20,7 +20,7 @@
 
   <!-- CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  {{ $sassOpts := dict "transpiler" "libsass" "outputStyle" "compressed" }}
+  {{ $sassOpts := dict "outputStyle" "compressed" }}
   {{ $css := resources.Get "sass/main.scss" | css.Sass $sassOpts | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
 
@@ -33,7 +33,7 @@
   {{ end }}
 
   <!-- Favicon -->
-  <link href="{{ site.BaseURL }}/favicon.ico" rel="shortcut icon">
+  <link href="{{ "favicon.ico" | relURL }}" rel="shortcut icon">
 
   {{ partial "seo.html" . }}
 </head>
