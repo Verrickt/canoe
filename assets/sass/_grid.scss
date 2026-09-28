@@ -1,0 +1,131 @@
+// ==========================================
+// Grid & Responsive Utilities
+// ==========================================
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+
+  @media only screen and (min-width: $screen-xl-min) {
+    padding: 0 30px;
+  }
+
+  @media only screen and (max-width: $screen-md-max) {
+    padding: 0 10px;
+  }
+
+  &.container-ex {
+    @media only screen and (max-width: $screen-sm-max) {
+      padding: 0;
+    }
+  }
+}
+
+.inner {
+  height: 100%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.page-content {
+  .container {
+    flex: 1 1 auto;
+    max-width: 100%;
+
+    .inner {
+      height: 100%;
+    }
+  }
+}
+
+// Responsive Display Utilities
+@media only screen and (max-width: $screen-sm-max) {
+  .hide-on-small-and-down,
+  .hide-on-small-only {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: $screen-md-min) {
+  .hide-on-med-and-up {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: $screen-md-max) {
+  .hide-on-med-only {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: $screen-md-max) {
+  .hide-on-med-and-down {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: $screen-lg-min) {
+  .hide-on-large-only {
+    display: none !important;
+  }
+}
+
+// Alignment & Layout Utilities
+.center,
+.center-align {
+  text-align: center;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.valign-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-toc {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+svg.svg-icons {
+  width: 2rem;
+  height: 1.6rem;
+  display: inline-block;
+  text-align: center;
+  margin-right: 1rem;
+  fill: currentColor;
+}

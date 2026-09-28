@@ -61,9 +61,16 @@
                 {{ end }}
               </div>
               {{ end }}
-              <div class="card-action">
-                {{ partial "comment.html" . }}
-              </div>
+              {{ if and (ne .Params.type "about") (ne .Params.comments false) }}
+                {{ $comments := partial "comments.html" . }}
+                {{ with (trim $comments " \t\r\n") }}
+                <div class="card-action comments-section">
+                  <div class="comments">
+                    {{ . | safeHTML }}
+                  </div>
+                </div>
+                {{ end }}
+              {{ end }}
 
               {{ if eq .Type "posts" }}
               <div class="pagination-single">

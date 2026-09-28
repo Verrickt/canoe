@@ -1,0 +1,153 @@
+// ==========================================
+// Canoe Theme SCSS Variables & CSS Design Tokens
+// ==========================================
+
+// SCSS Colors (Material Palette)
+$primary-color: #3f51b5;
+$primary-light: #606fc7;
+$primary-lighter: #7280ce;
+$primary-dark: #303f9f;
+
+$secondary-color: #607d8b;
+$secondary-dark: #4b626d;
+$secondary-light: #6b8a99;
+
+$accent-color: #ff4081;
+$selection-color: #606fc7;
+
+// Static Breakpoints
+$screen-sm-max: 600px;
+$screen-md-min: 601px;
+$screen-md-max: 992px;
+$screen-lg-min: 993px;
+$screen-xl-min: 1201px;
+
+// Font Stacks
+$font-family-base: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+$font-family-mono: "Fira Code", "Source Code Pro", Consolas, Monaco, Menlo, "Courier New", monospace;
+
+// Material Elevation Shadows
+$z-depth-0: none !important;
+$z-depth-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+$z-depth-2: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+$z-depth-3: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+$z-depth-4: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+$z-depth-5: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ==========================================
+// CSS Custom Properties (Theme Design Tokens)
+// ==========================================
+
+:root {
+  --bg-color: #ebecee;
+  --card-bg: #ffffff;
+  --surface-bg: #f7f7f7;
+  --surface-hover: #f0f0f0;
+
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --text-muted: #9e9e9e;
+  --text-on-primary: #ffffff;
+
+  --primary-color: #3f51b5;
+  --primary-light: #606fc7;
+  --primary-dark: #303f9f;
+
+  --secondary-color: #607d8b;
+  --secondary-dark: #4b626d;
+  --secondary-light: #6b8a99;
+
+  --border-color: #e0e0e0;
+  --divider-color: #eeeeee;
+
+  --code-bg: #f8f9fa;
+  --code-border: #e9ecef;
+  --code-inline-bg: #f0f2f5;
+  --code-inline-color: #c7254e;
+
+  --shadow-1: #{$z-depth-1};
+  --shadow-2: #{$z-depth-2};
+  --shadow-3: #{$z-depth-3};
+
+  --scrollbar-thumb: #bdbdbd;
+  --scrollbar-track: transparent;
+}
+
+// Dark Mode Tokens (Manual Override)
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --surface-bg: #252525;
+  --surface-hover: #2e2e2e;
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #757575;
+  --text-on-primary: #ffffff;
+
+  --primary-color: #5c6bc0;
+  --primary-light: #7986cb;
+  --primary-dark: #3949ab;
+
+  --secondary-color: #78909c;
+  --secondary-dark: #546e7a;
+  --secondary-light: #90a4ae;
+
+  --border-color: #333333;
+  --divider-color: #2a2a2a;
+
+  --code-bg: #16181d;
+  --code-border: #2d3139;
+  --code-inline-bg: #2a2d34;
+  --code-inline-color: #f07178;
+
+  --shadow-1: 0 2px 4px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 8px 16px 0 rgba(0, 0, 0, 0.6), 0 4px 6px 0 rgba(0, 0, 0, 0.4);
+
+  --scrollbar-thumb: #424242;
+  --scrollbar-track: #1a1a1a;
+}
+
+// Dark Mode Tokens (System Preference Fallback)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --surface-bg: #252525;
+    --surface-hover: #2e2e2e;
+
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --text-muted: #757575;
+    --text-on-primary: #ffffff;
+
+    --primary-color: #5c6bc0;
+    --primary-light: #7986cb;
+    --primary-dark: #3949ab;
+
+    --secondary-color: #78909c;
+    --secondary-dark: #546e7a;
+    --secondary-light: #90a4ae;
+
+    --border-color: #333333;
+    --divider-color: #2a2a2a;
+
+    --code-bg: #16181d;
+    --code-border: #2d3139;
+    --code-inline-bg: #2a2d34;
+    --code-inline-color: #f07178;
+
+    --shadow-1: 0 2px 4px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-2: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    --shadow-3: 0 8px 16px 0 rgba(0, 0, 0, 0.6), 0 4px 6px 0 rgba(0, 0, 0, 0.4);
+
+    --scrollbar-thumb: #424242;
+    --scrollbar-track: #1a1a1a;
+  }
+}

@@ -38,17 +38,17 @@
 
 ## Phase 4 · 大改动（前端资产重建）
 
-- [ ] 4.1 SCSS 重写：`static/css/index.css`（40KB minified 产物）→ `assets/sass/` 模块化源码（normalize、materialize 精简、layout、components、post、search、footer 等）
+- [x] 4.1 SCSS 重写：`static/css/index.css`（40KB minified 产物）→ `assets/sass/` 模块化源码（normalize、materialize 精简、layout、components、post、search、footer 等）
   - 忠实还原现有视觉：配色、卡片、瀑布流（columns）、splash、TOC 面板、Material Icons
   - Roboto 字体本地 `@font-face` 保留；瀑布流 columns 加现代回退
   - `css.Sass` + `minify` + `fingerprint` + SRI
   - 以 `/ref/public/` 旧版 HTML 为基准逐页比对
-- [ ] 4.2 JS 模块化：`assets/js/` 源码模块 + `js.Build`（esbuild）
+- [x] 4.2 JS 模块化：`assets/js/` 源码模块 + `js.Build`（esbuild）
   - `search.js`（Fuse）、`toc.js`、`nav.js`（侧栏/下拉/tabs 指示器）、`splash.js`（canvas 雪花特效保留）
   - 删除混淆产物 `index.js` 与 vendored 的 `av-min.js` / `Valine.min.js`（Valine/LeanCloud 已废弃）
-- [ ] 4.3 搜索重做：Hugo output format 生成 `index.json`（title / tags / content / uri）；Fuse.js 本地 vendored 进 `assets/`（用户无需 node）；前端结果渲染对接桌面搜索框 + 移动搜索面板
-- [ ] 4.4 评论钩子：仅保留 `layouts/partials/comments.html` 空钩子 + README 说明用户如何自行接入（默认不集成）
-- [ ] 4.5 暗色模式：CSS 自定义属性调色板 + `prefers-color-scheme` 自动 + 手动切换按钮（localStorage 记忆、防 FOUC 内联脚本），旧观感的亮色为默认
+- [x] 4.3 搜索重做：Hugo output format 生成 `index.json`（title / tags / content / uri）；Fuse.js 本地 vendored 进 `assets/`（用户无需 node）；前端结果渲染对接桌面搜索框 + 移动搜索面板
+- [x] 4.4 评论钩子：仅保留 `layouts/partials/comments.html` 空钩子 + README 说明用户如何自行接入（默认不集成）
+- [x] 4.5 暗色模式：CSS 自定义属性调色板 + `prefers-color-scheme` 自动 + 手动切换按钮（localStorage 记忆、防 FOUC 内联脚本），旧观感的亮色为默认
 
 ## Phase 5 · 收尾（文档与验收）
 

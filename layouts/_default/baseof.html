@@ -5,13 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
 
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (systemDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
   {{ partial "head-extra.html" . }}
 
   <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}{{ end }}{{ end }}</title>
 
   <!-- CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.BaseURL }}/css/index.css">
+  {{ $sassOpts := dict "transpiler" "libsass" "outputStyle" "compressed" }}
+  {{ $css := resources.Get "sass/main.scss" | css.Sass $sassOpts | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
 
   <!-- RSS -->
   {{ $rssLink := "" }}

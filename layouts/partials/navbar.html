@@ -58,6 +58,11 @@
             </a>
           </li>
           <li>
+            <a class="theme-btn" id="theme-toggle" href="javascript:void(0)" title="切换暗色/亮色模式" aria-label="Toggle theme">
+              <i class="material-icons theme-icon">dark_mode</i>
+            </a>
+          </li>
+          <li>
             <a class="term-btn hide-on-small-and-down" href='#term-panel'>
               <i class="material-icons">apps</i>
             </a>
@@ -124,6 +129,12 @@
     </a>
   </li>
   {{end}}
+  <li>
+    <a class="theme-btn-mobile" id="theme-toggle-mobile" href="javascript:void(0)">
+      <i class="material-icons theme-icon-mobile">dark_mode</i>
+      <span class="theme-text-mobile">暗色模式</span>
+    </a>
+  </li>
   <li>
     <a class="term-btn-mobile hide-on-med-only" href='{{ (site.GetPage "/categories").RelPermalink }}'>
       Categories

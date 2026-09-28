@@ -1,0 +1,226 @@
+// ==========================================
+// Components: Splash Hero, Taxonomy Drawer, Shortcodes
+// ==========================================
+
+// ------------------------------------------
+// Splash Hero Banner
+// ------------------------------------------
+.splash {
+  height: 344px;
+  width: 100%;
+  background-color: var(--secondary-color, #607d8b);
+  position: relative;
+  margin-bottom: 30px;
+  overflow: hidden;
+
+  @media only screen and (max-width: $screen-sm-max) {
+    height: 250px;
+  }
+
+  .splash-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .splash-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    color: #ffffff;
+    text-align: center;
+    z-index: 1;
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      box-shadow: var(--shadow-1, #{$z-depth-1});
+      object-fit: cover;
+
+      @media only screen and (max-width: $screen-sm-max) {
+        width: 110px;
+        height: 110px;
+      }
+    }
+
+    h3 {
+      font-size: 2.5rem;
+      margin: 12px 0 6px;
+      font-weight: 400;
+
+      @media only screen and (max-width: $screen-sm-max) {
+        font-size: 1.8rem;
+      }
+    }
+
+    .desc {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 90%;
+    }
+  }
+}
+
+// ------------------------------------------
+// Taxonomy Dropdown Panel
+// ------------------------------------------
+.taxonomy {
+  position: fixed;
+  z-index: 996;
+  width: 100%;
+  left: 0;
+  top: 64px;
+  transform: translateY(-100%);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  @media only screen and (max-width: $screen-md-max) {
+    top: 56px;
+  }
+
+  &.active {
+    transform: translateY(0);
+  }
+
+  .taxonomy-panel {
+    max-height: calc(100vh - 64px);
+    margin-bottom: 1px;
+    background: var(--card-bg, #ffffff);
+    overflow-y: auto;
+    color: var(--text-primary, #333333);
+    font-size: 15px;
+    line-height: 1.2em;
+    padding: 16px 24px;
+    box-shadow: var(--shadow-2, #{$z-depth-2});
+
+    label {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      padding: 12px 0 8px;
+      margin: 0;
+      color: var(--text-secondary, #737373);
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    ul {
+      margin: 0;
+      overflow: hidden;
+      padding-left: 0;
+      list-style: none;
+
+      &:empty {
+        display: none;
+      }
+
+      li {
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-right: 8px;
+
+        .badge {
+          font-size: 0.8em;
+          vertical-align: top;
+          line-height: 25px;
+          margin-left: 6px;
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------------
+// Shortcodes
+// ------------------------------------------
+
+// Admonition Shortcode
+.admonition {
+  margin: 20px -24px;
+  padding: 16px 24px;
+  background: #42a5f5;
+  color: #ffffff;
+  border-radius: 2px;
+
+  @media only screen and (max-width: $screen-md-max) {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &.warning {
+    background: #ff7043;
+  }
+
+  .admonition-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 6px;
+      font-size: 22px;
+      vertical-align: middle;
+    }
+  }
+
+  .admonition-content {
+    p {
+      margin: 0.5em 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Video Player Shortcode
+.video-player {
+  width: 100%;
+  max-height: 480px;
+  border-radius: 2px;
+  background: #000000;
+  margin: 15px 0;
+  outline: none;
+}
+
+// Music163 Shortcode
+.music163 {
+  display: block;
+  max-width: 100%;
+  border: none;
+  margin: 15px 0;
+}

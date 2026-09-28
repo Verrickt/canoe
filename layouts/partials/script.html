@@ -15,4 +15,6 @@
 </script>
 {{ end }}
 
-<script type="text/javascript" src="{{ site.BaseURL }}/js/index.js" data-baseurl="{{ site.BaseURL }}"></script>
+{{ $jsOpts := dict "minify" true "target" "es2020" }}
+{{ $js := resources.Get "js/main.js" | js.Build $jsOpts | resources.Fingerprint }}
+<script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous" data-baseurl="{{ site.BaseURL }}" defer></script>

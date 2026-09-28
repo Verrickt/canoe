@@ -1,0 +1,453 @@
+// ==========================================
+// Post, Article Typography, Breadcrumb, TOC
+// ==========================================
+
+// Breadcrumb Navigation
+.breadcrumb-root {
+  padding: 0 24px;
+  background-color: var(--surface-bg, #e8eaf6);
+  transition: background-color $transition-normal;
+
+  @media only screen and (max-width: $screen-md-max) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .breadcrumbs {
+    margin: 0;
+    height: 56px;
+    line-height: 56px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--primary-color, #3f51b5);
+
+    @media only screen and (min-width: $screen-lg-min) {
+      height: 64px;
+      line-height: 64px;
+    }
+
+    a {
+      color: var(--primary-color, #3f51b5);
+
+      &:hover {
+        color: var(--primary-light, #606fc7);
+      }
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+
+      i.material-icons {
+        vertical-align: middle;
+        margin-right: 6px;
+        float: none;
+        line-height: inherit;
+        font-size: 20px;
+      }
+
+      &::before {
+        content: "\E5CC";
+        color: var(--primary-color, #3f51b5);
+        vertical-align: middle;
+        display: inline-block;
+        font-family: "Material Icons";
+        font-weight: 400;
+        font-style: normal;
+        font-size: 20px;
+        margin: 0 8px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      &:first-child::before {
+        display: none;
+      }
+
+      &:last-child,
+      span {
+        color: var(--text-secondary, #737373);
+      }
+    }
+  }
+}
+
+// Post Wrapper & TOC Layout
+.post-wrapper {
+  margin: 0 auto;
+  position: relative;
+
+  .post {
+    .card {
+      min-height: 100%;
+    }
+
+    &:not(.no-toc) {
+      margin-right: 0;
+
+      @media only screen and (min-width: 1000px) {
+        margin-right: 320px;
+      }
+    }
+
+    .breadcrumb-root {
+      background-color: var(--surface-bg, #e8eaf6);
+
+      .breadcrumbs {
+        margin: 0;
+      }
+    }
+
+    .card-header.postinfo {
+      background-color: var(--primary-color, #3f51b5);
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      min-height: 150px;
+      transition: background-color $transition-normal;
+
+      .card-title {
+        color: #ffffff;
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin: 0;
+
+        @media only screen and (max-width: $screen-sm-max) {
+          font-size: 2rem;
+        }
+      }
+
+      .card-meta {
+        font-size: 15px;
+        margin-bottom: 0;
+
+        address a,
+        time {
+          color: #ffffff;
+        }
+
+        address::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Table of Contents (TOC) Panel
+.toc-panel {
+  display: none;
+
+  @media only screen and (min-width: 1000px) {
+    display: block;
+    position: relative;
+    float: right;
+    width: 320px;
+    height: 100%;
+    padding-left: 10px;
+
+    nav {
+      position: fixed;
+      width: 320px;
+      top: 64px;
+      padding-top: 20px;
+      max-height: calc(100vh - 84px);
+      overflow-y: auto;
+
+      .indicator {
+        position: absolute;
+        z-index: -1;
+        display: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 25px;
+        border-left: 3px solid var(--primary-color, #3f51b5);
+        background-color: var(--surface-hover, #dddfe2);
+
+        &.show {
+          display: block;
+          transition: top 0.2s ease-in;
+        }
+      }
+
+      > ul {
+        margin: 0;
+        font-size: 13px;
+        padding: 0 10px 0 1em;
+        list-style: none;
+
+        li {
+          line-height: 25px;
+
+          &::before {
+            display: none;
+            content: "";
+          }
+
+          a {
+            color: var(--text-secondary, #333333);
+            outline: none;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            text-decoration: none;
+
+            &:hover,
+            &.active {
+              color: var(--primary-color, #3f51b5);
+            }
+          }
+
+          ul {
+            padding-left: 1.5em;
+            list-style: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Article Typography
+.article {
+  font-size: 16px;
+  line-height: 1.7em;
+  color: var(--text-primary);
+
+  blockquote {
+    margin: 20px 0;
+    padding: 10px 16px;
+    border-left: 3px solid var(--primary-color, #3f51b5);
+    color: var(--text-secondary, #4d4d4d);
+    background: var(--surface-bg, #fafafa);
+    border-radius: 0 2px 2px 0;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.333334em;
+    padding-bottom: 0.5em;
+    margin: 0.67em 0;
+    color: var(--primary-color, #3f51b5);
+    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.12));
+  }
+
+  h2 {
+    font-size: 25px;
+    margin: 0.8em 0;
+    line-height: 1.4em;
+    color: var(--primary-color, #3f51b5);
+  }
+
+  h3 {
+    font-size: 22px;
+    margin: 1em 0;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin: 1.2em 0;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  h3 a,
+  h4 a,
+  h5 a,
+  h6 a {
+    font-weight: 400;
+    font-style: normal;
+    color: inherit;
+    border-bottom: none;
+  }
+
+  p {
+    margin: 0.8em 0;
+  }
+
+  code:not(.hljs) {
+    color: var(--code-inline-color, #3f51b5);
+    white-space: nowrap;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: var(--code-inline-bg, rgba(27, 31, 35, 0.05));
+    border-radius: 3px;
+    font-family: $font-family-mono;
+  }
+
+  p > code,
+  li > code {
+    word-break: break-all;
+    word-wrap: break-word;
+    padding: 2px 4px;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    line-height: 10px;
+    font-size: 11px;
+    color: #555555;
+    background-color: #fcfcfc;
+    border: 1px solid #cccccc;
+    border-bottom-color: #bbbbbb;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #bbbbbb;
+  }
+
+  a {
+    color: var(--primary-color, #3f51b5);
+    text-decoration: none;
+    border-bottom: 1px dotted;
+
+    &:hover,
+    &:focus {
+      color: var(--primary-light, #606fc7);
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: 24px;
+    margin: 1.2em 0;
+
+    li {
+      margin: 0.5em 0;
+
+      p {
+        display: inline;
+      }
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+
+    ul {
+      list-style-type: circle;
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  hr {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+
+  pre {
+    margin: 20px -24px;
+    padding: 16px 24px;
+    line-height: 1.5em;
+    overflow: auto;
+    background: var(--code-bg, #2b303b);
+    border-radius: 0;
+    -webkit-overflow-scrolling: touch;
+
+    @media only screen and (max-width: $screen-md-max) {
+      margin-left: -16px;
+      margin-right: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    code {
+      display: block;
+      overflow-x: auto;
+      color: #c0c5c3;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      font-family: $font-family-mono;
+    }
+  }
+
+  // Chroma highlight container adjustments
+  .highlight {
+    margin: 20px -24px;
+
+    @media only screen and (max-width: $screen-md-max) {
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+
+    pre {
+      margin: 0;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    display: block;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+
+    th,
+    td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--surface-bg);
+      font-weight: 600;
+      text-align: left;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--surface-bg);
+    }
+  }
+}
+
+// Summary in Waterfall Card
+.post-summary .article {
+  h1 {
+    font-size: 25px;
+    line-height: 1.333334em;
+    border-bottom: none;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 1.4em;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  h3,
+  h4 {
+    font-size: 15px;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .readmore {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color, #3f51b5);
+    font-weight: 500;
+    border-bottom: none;
+
+    &:hover {
+      color: var(--primary-light, #606fc7);
+    }
+  }
+}

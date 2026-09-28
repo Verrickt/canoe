@@ -1,0 +1,18 @@
+[
+  {{- $pages := where site.RegularPages "Type" "in" (slice "posts" "archive" "about") -}}
+  {{- if not $pages }}{{ $pages = site.RegularPages }}{{ end -}}
+  {{- $first := true -}}
+  {{- range $pages -}}
+    {{- if not .Draft -}}
+      {{- if not $first }},{{ end -}}
+      {{- $first = false -}}
+      {
+        "title": {{ .Title | jsonify }},
+        "uri": {{ .RelPermalink | jsonify }},
+        "tags": {{ (.Params.tags | default slice) | jsonify }},
+        "categories": {{ (.Params.categories | default slice) | jsonify }},
+        "content": {{ .Plain | htmlUnescape | plainify | truncate 400 | jsonify }}
+      }
+    {{- end -}}
+  {{- end -}}
+]

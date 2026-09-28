@@ -11,6 +11,9 @@ enableGitInfo = true
 # if true, auto-detect Chinese/Japanese/Korean Languages in the content. (.Summary and .WordCount can work properly in CJKLanguage)
 hasCJKLanguage = true
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 
 
 [params]
