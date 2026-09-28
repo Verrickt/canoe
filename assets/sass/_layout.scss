@@ -196,28 +196,6 @@
       width: 0;
       margin: 0;
     }
-
-    form.nav-form {
-      flex: 1 1 auto;
-      background: var(--surface-bg, #f7f7f7);
-
-      i.material-icons {
-        color: var(--text-secondary, #757575);
-      }
-
-      input {
-        color: var(--text-primary, #212121);
-      }
-
-      input::placeholder {
-        color: var(--text-secondary, #757575);
-      }
-
-      .form-popout {
-        visibility: visible;
-        transform: translateY(0);
-      }
-    }
   }
 }
 
@@ -400,7 +378,7 @@ body.mobile-sidebar-active {
 
   li {
     display: inline-block;
-    border-radius: 2px;
+    border-radius: 0;
     text-align: center;
     vertical-align: top;
     height: 30px;
@@ -411,7 +389,7 @@ body.mobile-sidebar-active {
       font-size: 1.2rem;
       padding: 0 10px;
       line-height: 30px;
-      border-radius: 2px;
+      border-radius: 0;
       transition: background-color 0.2s, color 0.2s;
 
       &:hover {
@@ -465,7 +443,7 @@ body.mobile-sidebar-active {
   line-height: 64px;
   padding: 0 20px;
   background-color: var(--surface-bg, #e8eaf6);
-  border-radius: 0 0 2px 2px;
+  border-radius: 0;
   transition: background-color $transition-normal;
 
   .pagination-item {
@@ -576,7 +554,7 @@ body.mobile-sidebar-active {
   background: var(--card-bg, #ffffff);
   columns: 400px;
   padding: 12px 24px;
-  border-radius: 2px;
+  border-radius: 0;
   box-shadow: var(--shadow-1, #{$z-depth-1});
 
   .collection-item {

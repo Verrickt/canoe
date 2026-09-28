@@ -7,10 +7,6 @@ export function initTheme() {
   const desktopToggle = document.getElementById('theme-toggle');
   const desktopIcon = desktopToggle?.querySelector('.theme-icon');
 
-  const mobileToggle = document.getElementById('theme-toggle-mobile');
-  const mobileIcon = mobileToggle?.querySelector('.theme-icon-mobile');
-  const mobileText = mobileToggle?.querySelector('.theme-text-mobile');
-
   function getCurrentTheme() {
     return document.documentElement.getAttribute('data-theme') || 'light';
   }
@@ -18,11 +14,7 @@ export function initTheme() {
   function updateUI(theme) {
     const isDark = theme === 'dark';
     const iconName = isDark ? 'light_mode' : 'dark_mode';
-    const textLabel = isDark ? '亮色模式' : '暗色模式';
-
     if (desktopIcon) desktopIcon.textContent = iconName;
-    if (mobileIcon) mobileIcon.textContent = iconName;
-    if (mobileText) mobileText.textContent = textLabel;
   }
 
   function setTheme(theme, save = true) {
@@ -45,7 +37,6 @@ export function initTheme() {
 
   // Event Listeners
   desktopToggle?.addEventListener('click', toggleTheme);
-  mobileToggle?.addEventListener('click', toggleTheme);
 
   // Sync with OS theme changes when not manually overridden
   if (window.matchMedia) {

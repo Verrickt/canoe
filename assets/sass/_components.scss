@@ -165,7 +165,7 @@
   padding: 16px 24px;
   background: #42a5f5;
   color: #ffffff;
-  border-radius: 2px;
+  border-radius: 0;
 
   @media only screen and (max-width: $screen-md-max) {
     margin-left: -16px;
@@ -211,7 +211,7 @@
 .video-player {
   width: 100%;
   max-height: 480px;
-  border-radius: 2px;
+  border-radius: 0;
   background: #000000;
   margin: 15px 0;
   outline: none;

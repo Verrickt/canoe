@@ -6,23 +6,10 @@
 .navbar form.nav-form {
   position: relative;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
+  border-radius: 0;
   flex: 0 1 auto;
   margin: 0 10px;
   transition: flex 0.2s, width 0.2s, background 0.2s;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.3);
-
-    i.material-icons,
-    input {
-      color: #ffffff;
-    }
-
-    input::placeholder {
-      color: #ffffff;
-    }
-  }
 
   .form-group {
     line-height: 40px;
@@ -71,9 +58,50 @@
     margin-top: 12px;
     visibility: hidden;
     z-index: -1;
-    border-radius: 2px;
+    border-radius: 0;
     box-shadow: var(--shadow-2, #{$z-depth-2});
     transition: transform 0.2s, visibility 0.2s;
+  }
+}
+
+// Hover effect only when search is NOT active
+.navbar:not(.search-active) form.nav-form:hover {
+  background: rgba(255, 255, 255, 0.3);
+
+  .form-group {
+    i.material-icons,
+    input {
+      color: #ffffff;
+    }
+
+    input::placeholder {
+      color: #ffffff;
+    }
+  }
+}
+
+// Active Search State (Focused / Popout Open)
+.navbar.search-active form.nav-form {
+  flex: 1 1 auto;
+  background: var(--surface-bg, #f7f7f7);
+
+  .form-group {
+    i.material-icons {
+      color: var(--text-secondary, #757575);
+    }
+
+    input {
+      color: var(--text-primary, #212121);
+
+      &::placeholder {
+        color: var(--text-secondary, #757575);
+      }
+    }
+  }
+
+  .form-popout {
+    visibility: visible;
+    transform: translateY(0);
   }
 }
 
@@ -123,7 +151,7 @@
         width: 100%;
         color: var(--text-primary, #333333);
         padding: 10px 14px;
-        border-radius: 2px;
+        border-radius: 0;
         transition: background-color 0.15s;
 
         &:hover {
