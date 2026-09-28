@@ -129,16 +129,26 @@
     </a>
   </li>
   {{end}}
+  {{ $hasCategories := false }}
+  {{ $hasTags := false }}
+  {{ range site.Menus.main }}
+    {{ if eq (lower .Name) "categories" }}{{ $hasCategories = true }}{{ end }}
+    {{ if eq (lower .Name) "tags" }}{{ $hasTags = true }}{{ end }}
+  {{ end }}
+  {{ if not $hasCategories }}
   <li>
     <a class="term-btn-mobile hide-on-med-only" href='{{ (site.GetPage "/categories").RelPermalink }}'>
       Categories
     </a>
   </li>
+  {{ end }}
+  {{ if not $hasTags }}
   <li>
     <a class="term-btn-mobile hide-on-med-only" href='{{ (site.GetPage "/tags").RelPermalink }}'>
       Tags
     </a>
   </li>
+  {{ end }}
   {{ with $rss }}
   <li>
     <a class="rss-btn-mobile hide-on-med-only" href='{{ . }}' target="_blank">

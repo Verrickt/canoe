@@ -53,10 +53,20 @@ hasCJKLanguage = true
     name = "Archive"
     weight = 2
     url = "/archive/"
-    
+
+[[menu.main]]
+    name = "Categories"
+    weight = 3
+    url = "/categories/"
+
+[[menu.main]]
+    name = "Tags"
+    weight = 4
+    url = "/tags/"
+
 [[menu.main]]
     name = "About"
-    weight = 6
+    weight = 5
     url = "/about/"
 
 

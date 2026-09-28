@@ -23,7 +23,7 @@ $screen-lg-min: 993px;
 $screen-xl-min: 1201px;
 
 // Font Stacks
-$font-family-base: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+$font-family-base: Roboto, Helvetica, "Hiragino Sans GB", "Hiragino Sans GB W3", "Source Han Sans CN Regular", "WenQuanYi Micro Hei", "Microsoft YaHei", Arial, sans-serif;
 $font-family-mono: "Fira Code", "Source Code Pro", Consolas, Monaco, Menlo, "Courier New", monospace;
 
 // Material Elevation Shadows
@@ -76,6 +76,9 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   --scrollbar-thumb: #bdbdbd;
   --scrollbar-track: transparent;
+
+  --chip-bg: #e4e4e4;
+  --chip-color: rgba(0, 0, 0, 0.6);
 }
 
 // Dark Mode Tokens (Manual Override)
@@ -112,6 +115,9 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   --scrollbar-thumb: #424242;
   --scrollbar-track: #1a1a1a;
+
+  --chip-bg: #383838;
+  --chip-color: rgba(255, 255, 255, 0.7);
 }
 
 // Dark Mode Tokens (System Preference Fallback)
@@ -149,5 +155,8 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --scrollbar-thumb: #424242;
     --scrollbar-track: #1a1a1a;
+
+    --chip-bg: #383838;
+    --chip-color: rgba(255, 255, 255, 0.7);
   }
 }

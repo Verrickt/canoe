@@ -141,6 +141,37 @@
   line-height: 25px;
 }
 
+// Chips
+.chip {
+  display: inline-block;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--chip-color, rgba(0, 0, 0, 0.6));
+  line-height: 32px;
+  padding: 0 12px;
+  background-color: var(--chip-bg, #e4e4e4);
+  margin-bottom: 5px;
+  margin-right: 5px;
+  transition: background-color $transition-normal, color $transition-normal;
+
+  > img {
+    float: left;
+    margin: 0 8px 0 -12px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+  }
+
+  .close {
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    line-height: 32px;
+    padding-left: 8px;
+  }
+}
+
 // Cards
 .card-panel {
   padding: 24px;
@@ -160,7 +191,7 @@
 
   .card-title {
     font-size: 24px;
-    font-weight: 300;
+    font-weight: 400;
 
     a {
       color: var(--primary-color, #3f51b5);

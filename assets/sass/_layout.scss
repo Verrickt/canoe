@@ -535,6 +535,7 @@ body.mobile-sidebar-active {
     .collapsible-body {
       padding: 10px 0 20px 30px;
       position: relative;
+      box-shadow: none;
 
       &::before {
         content: "";
@@ -555,7 +556,7 @@ body.mobile-sidebar-active {
   columns: 400px;
   padding: 12px 24px;
   border-radius: 0;
-  box-shadow: var(--shadow-1, #{$z-depth-1});
+  box-shadow: none;
 
   .collection-item {
     display: block;
