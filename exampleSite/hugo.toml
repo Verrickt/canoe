@@ -1,9 +1,9 @@
 baseURL = "https://example.org"
 locale = "zh-cn"
-title = "Hugo Canoe Theme"
+title = "Hugo Canon-Revived Theme"
 
 
-theme = "canoe"
+theme = "canon-revived"
 
 # last mod time support
 enableGitInfo = true
@@ -17,7 +17,7 @@ hasCJKLanguage = true
 
 
 [params]
-  author = "Kevin Tan"
+  author = "Verrickt"
   description = "Tempora mutantur, nos et mutamur in illis ..."
   copyright = "Copyleft@Kevin Tan"
  # date format convert: http://fuckinggodateformat.com/
@@ -95,7 +95,7 @@ hasCJKLanguage = true
 [[menu.social]]
   pre = "<svg class='svg-icons svg-icons-github'><use xlink:href='#svg-icons-github'></use></svg>"
   name = "Github"
-  url = "https://github.com/stkevintan"
+  url = "https://github.com/Verrickt"
 
 [[menu.social]]
   pre = "<svg class='svg-icons svg-icons-twitter'><use xlink:href='#svg-icons-twitter'></use></svg>"

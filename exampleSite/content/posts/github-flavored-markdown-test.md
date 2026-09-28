@@ -1,20 +1,26 @@
 ---
-title: this is a test
+title: "GitHub Flavored Markdown Test"
 author: "Michael Henderson"
-tags: ["test"]
-date: 2014-09-28
+tags: ["Markdown", "GFM"]
+date: 2026-09-28
 math: true
-hidden: true
 ---
 
+This file demonstrates and tests elements unique to **GitHub Flavored Markdown (GFM)** rendered by the theme, including responsive auto-stretching tables, task lists, code blocks, and math formulas.
 
-|a|b|
-|:--:|:--:|
-|c|d|
+---
 
-# GFM Feature Verification Test
-$\frac{1}{2}$
-This file contains elements unique to **GitHub Flavored Markdown (GFM)**. If your renderer supports GFM, the elements below will format correctly. If it only supports **Vanilla Markdown (CommonMark)**, these sections will look broken, misaligned, or render as raw plain text.
+## 1. Tables
+
+### Compact Two-Column Table (Auto-Stretching Test)
+
+| a | b |
+| :--: | :--: |
+| c | d |
+
+### Multi-Column Data Grid Table
+
+*GFM renders this as a clean, styled grid with column alignment.*
 
 ---
 

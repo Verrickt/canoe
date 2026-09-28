@@ -1,7 +1,7 @@
-# Hugo Canoe Theme
+# Hugo Canon-Revived Theme
 
 > A beautiful, modern, and powerful Material Design theme for Hugo (0.146+ / 0.166+).  
-> 优雅、轻量、高可用的 Material Design 静态博客主题（针对现代 Hugo 全面重构，构建零 npm 依赖）。
+> 优雅、轻量、高可用的 Material Design 静态博客主题（由 [Verrickt](https://github.com/Verrickt) 基于原版 Canoe 全面重构复活，构建零 npm 依赖）。
 
 ---
 
@@ -21,6 +21,7 @@
   * 自动统计文章字数与预计阅读时间。
   * 侧边动态目录（Table of Contents），支持阅读高亮指示器。
   * 内置 Chroma 服务端语法高亮，告别笨重的外部 highlight.js。
+  * 自适应 Markdown 表格排版，短表格自动撑满 100% 宽度，大表格自动横向滚动。
 * **数学公式渲染（MathJax 3）**：
   * 按需按篇加载：新建文章默认包含 `math: true`，仅在声明的文章中加载 MathJax 3 渲染引擎。
 * **丰富的短代码（Shortcodes）**：
@@ -44,24 +45,27 @@
 
 ### 1. 安装主题
 
-在你的 Hugo 站点根目录下执行：
+作为 Git 子模块（Git Submodule）添加至你的 Hugo 站点根目录（推荐）：
 
 ```bash
-git clone https://github.com/stkevintan/canoe.git themes/canoe
+git submodule add https://github.com/Verrickt/canon-revived.git themes/canon-revived
 ```
 
-或者作为 Git 子模块添加：
+或者直接克隆：
 
 ```bash
-git submodule add https://github.com/stkevintan/canoe.git themes/canoe
+git clone https://github.com/Verrickt/canon-revived.git themes/canon-revived
 ```
+
+> [!TIP]
+> **Submodule 部署注意**：如果通过子模块添加并在 GitHub Actions、Vercel 或 Cloudflare Pages 上自动构建，请确保检出代码时开启了递归拉取子模块（例如 `submodules: recursive`），且构建环境使用的是 **Hugo Extended** 版本。
 
 ### 2. 启用主题
 
 修改站点根目录下的配置文件（推荐 `hugo.toml`）：
 
 ```toml
-theme = "canoe"
+theme = "canon-revived"
 ```
 
 ### 3. 本地预览
@@ -80,7 +84,7 @@ hugo server -D
 baseURL = "https://example.org/"
 locale = "zh-cn"
 title = "My Blog"
-theme = "canoe"
+theme = "canon-revived"
 
 # 启用 CJK 语言自动分词与统计（中文环境下正确计算字数与摘要）
 hasCJKLanguage = true
