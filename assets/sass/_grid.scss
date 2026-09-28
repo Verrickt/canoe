@@ -29,6 +29,12 @@
 }
 
 .page-content {
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+
   .container {
     flex: 1 1 auto;
     max-width: 100%;

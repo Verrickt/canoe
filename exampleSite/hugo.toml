@@ -129,7 +129,7 @@ hasCJKLanguage = true
     # Server-side syntax highlighting via Chroma (replaces client-side highlight.js).
     # Set `noHighlight`/`codeFences` per-use if needed; these are site-wide defaults.
     codeFences = true
-    guessSyntax = false
+    guessSyntax = true
     hl_Lines = ""
     lineNoStart = 1
     lineNos = false

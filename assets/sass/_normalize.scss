@@ -8,6 +8,8 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   line-height: 1.5;
+  height: 100%;
+  min-height: 100%;
 }
 
 *,
@@ -19,6 +21,8 @@ html {
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  min-height: 100%;
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: $font-family-base;
@@ -218,14 +222,17 @@ th {
   padding: 0;
 }
 
-ul:not(.browser-default),
-ol:not(.browser-default) {
+ul:not(.browser-default) {
   padding-left: 0;
   list-style-type: none;
 
   > li {
     list-style-type: none;
   }
+}
+
+ol:not(.browser-default) {
+  padding-left: 0;
 }
 
 .nowrap {
