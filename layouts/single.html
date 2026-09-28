@@ -80,15 +80,16 @@
                 {{ end }}
               {{ end }}
 
-              {{ if eq .Type "posts" }}
+              {{ if and (eq .Type "posts") (ne .Params.hidden true) }}
+              {{ $visiblePosts := where (where site.RegularPages "Type" "posts") "Params.hidden" "!=" true }}
               <div class="pagination-single">
-                {{ with .PrevInSection }}
+                {{ with $visiblePosts.Prev . }}
                 <span class="pagination-item previous">
                   <i class="material-icons">navigate_before</i>
                   <a href="{{ .RelPermalink }}" rel="prev">{{ .LinkTitle }}</a>
                 </span>
                 {{ end }}
-                {{ with .NextInSection }}
+                {{ with $visiblePosts.Next . }}
                 <span class="pagination-item next">
                   <a href="{{ .RelPermalink }}" rel="next">{{ .LinkTitle }}</a>
                   <i class="material-icons">navigate_next</i>

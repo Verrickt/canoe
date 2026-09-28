@@ -95,11 +95,15 @@
             {{ $taxonomy := site.GetPage "/" .Identifier }}
             {{ with $taxonomy }}
             {{ range .Data.Terms.ByCount }}
+            {{ $visiblePages := where .Pages "Params.hidden" "!=" true }}
+            {{ $count := len $visiblePages }}
+            {{ if gt $count 0 }}
             <li>
               <a class="btn btn-secondary" href="{{ .Page.RelPermalink }}"> {{ .Page.Title }}
-                <span class="badge">{{ .Count }}</span>
+                <span class="badge">{{ $count }}</span>
               </a>
             </li>
+            {{ end }}
             {{ end }}
             {{ end }}
           </ul>

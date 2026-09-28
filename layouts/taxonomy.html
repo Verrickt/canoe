@@ -12,12 +12,16 @@
               {{ partial "breadcrumb.html" . }}
               <div class="card-content">
                 {{ range .Data.Terms.ByCount }}
+                {{ $visiblePages := where .Pages "Params.hidden" "!=" true }}
+                {{ $count := len $visiblePages }}
+                {{ if gt $count 0 }}
                 <div class="chip">
                   <a class="unstyled" href="{{ .Page.RelPermalink }}">
                     {{ .Page.Title }}
                   </a>
-                  <sup class="tagcount">{{ .Count }}</sup>
+                  <sup class="tagcount">{{ $count }}</sup>
                 </div>
+                {{ end }}
                 {{ end }}
               </div>
             </div>

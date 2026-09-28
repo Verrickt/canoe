@@ -30,6 +30,7 @@
 * **注重隐私与低依赖**：
   * 默认不捆绑任何外部追踪脚本或评论服务。
   * 提供即插即用的评论钩子（Comments Hook），方便无缝接入 Giscus、Waline、Twikoo、Disqus 等。
+  * **隐秘分享（Hidden / Unlisted 模式）**：在文章 Front Matter 设置 `hidden: true` 即可仅供直链访问。首页瀑布流、归档、标签列表、站内搜索、RSS 订阅源与 Sitemap 均自动彻底剔除，并自动配置 `noindex` 屏蔽搜索引擎收录。
 
 ---
 

@@ -3,7 +3,7 @@
   {{- if not $pages }}{{ $pages = site.RegularPages }}{{ end -}}
   {{- $first := true -}}
   {{- range $pages -}}
-    {{- if not .Draft -}}
+    {{- if and (not .Draft) (ne .Params.hidden true) -}}
       {{- if not $first }},{{ end -}}
       {{- $first = false -}}
       {

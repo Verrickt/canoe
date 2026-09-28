@@ -2,9 +2,9 @@
   Waterfall list. The paginator is computed exactly once and reused
   for both the card list and the pagination block.
 */}}
-{{ $pages := .Pages }}
+{{ $pages := where .Pages "Params.hidden" "!=" true }}
 {{ if .IsHome }}
-  {{ $pages = where site.RegularPages "Type" "posts" }}
+  {{ $pages = where (where site.RegularPages "Type" "posts") "Params.hidden" "!=" true }}
 {{ end }}
 {{ $paginator := .Paginate $pages }}
 <div class="container container-ex">
