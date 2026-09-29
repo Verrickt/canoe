@@ -10,7 +10,7 @@
             {{ with site.Menus.social }} {{ range . }}
             <li>
               <a href="{{.URL}}" target="_blank" title="{{.Name}}">
-                {{ .Pre | default ("<i class='material-icons'>language</i>" | safeHTML ) }}
+                {{ partial "helpers/social-icon.html" . }}
               </a>
             </li>
             {{ end }} {{ end }}
@@ -34,4 +34,7 @@
       <div class="inner">{{ site.Params.copyright }}</div>
     </div>
   </div>
+  {{ with resources.Get "svg/icon.svg" }}
+    {{ .Content | safeHTML }}
+  {{ end }}
 </footer>

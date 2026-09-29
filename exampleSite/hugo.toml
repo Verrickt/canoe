@@ -101,18 +101,34 @@ hasCJKLanguage = true
   url = "https://whst.github.io/"
 
 
-# 社交账号 Social Network
+# 社交账号 Social Network (支持 Simple Icons 3200+ 品牌图标或自定义 pre)
 [[menu.social]]
-  pre = "<svg class='svg-icons svg-icons-github'><use xlink:href='#svg-icons-github'></use></svg>"
-  name = "Github"
+  identifier = "github"
+  name = "GitHub"
   url = "https://github.com/Verrickt"
 
 [[menu.social]]
-  pre = "<svg class='svg-icons svg-icons-twitter'><use xlink:href='#svg-icons-twitter'></use></svg>"
-  name = "Twitter"
-  url = "https://twitter.com/kevinsfork"
+  identifier = "bilibili"
+  name = "Bilibili"
+  url = "https://space.bilibili.com"
 
 [[menu.social]]
+  identifier = "telegram"
+  name = "Telegram"
+  url = "https://t.me"
+
+[[menu.social]]
+  identifier = "steam"
+  name = "Steam"
+  url = "https://steamcommunity.com"
+
+[[menu.social]]
+  identifier = "x"
+  name = "X"
+  url = "https://x.com"
+
+[[menu.social]]
+  # 也支持传统的 pre 直接内联自定义 HTML 或 Material Icons
   pre = "<svg class='svg-icons svg-icons-sina-weibo'><use xlink:href='#svg-icons-sina-weibo'></use></svg>"
   name = "Weibo"
   url = "http://weibo.com/kevinclasky"

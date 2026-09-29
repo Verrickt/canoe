@@ -152,11 +152,27 @@ enableGitInfo = true
   name = "GitHub"
   url = "https://github.com"
 
-# 页脚社交图标 (使用内置 SVG 图标)
+# 页脚社交图标 (支持 Simple Icons 3200+ 品牌图标自动编译期内联，支持 identifier 或 name)
 [[menu.social]]
-  pre = "<svg class='svg-icons svg-icons-github'><use xlink:href='#svg-icons-github'></use></svg>"
-  name = "Github"
+  identifier = "github"
+  name = "GitHub"
   url = "https://github.com/your-username"
+
+[[menu.social]]
+  identifier = "bilibili"
+  name = "Bilibili"
+  url = "https://space.bilibili.com/your-id"
+
+[[menu.social]]
+  identifier = "telegram"
+  name = "Telegram"
+  url = "https://t.me/your-username"
+
+# 也支持通过 pre 传入自定义 HTML / SVG 或 Material Icons
+[[menu.social]]
+  pre = "<svg class='svg-icons svg-icons-sina-weibo'><use xlink:href='#svg-icons-sina-weibo'></use></svg>"
+  name = "Weibo"
+  url = "http://weibo.com/..."
 ```
 
 ---

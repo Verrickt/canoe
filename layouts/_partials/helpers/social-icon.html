@@ -1,0 +1,30 @@
+{{- /*
+  Renders a social network icon with Simple Icons support and fallback.
+  Context: Menu item (.Pre, .Identifier, .Name, .URL)
+*/ -}}
+{{- if .Pre -}}
+  {{- .Pre | safeHTML -}}
+{{- else -}}
+  {{- $name := lower (.Identifier | default .Name | replaceRE `\s+` ``) -}}
+  {{- $cdnTpl := site.Params.social.simpleicons_cdn | default "https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/%s.svg" -}}
+  {{- $iconUrl := printf $cdnTpl $name -}}
+  {{- $rendered := false -}}
+  {{- with try (resources.GetRemote $iconUrl) -}}
+    {{- with .Err -}}
+      {{- /* Remote fetch error / 404, fallback below */ -}}
+    {{- else with .Value -}}
+      {{- $rendered = true -}}
+      {{- replace .Content "<svg " (printf `<svg class="svg-icons svg-icons-%s" ` $name) 1 | safeHTML -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $rendered -}}
+    {{- /* Fallback to Material Icons if matched, or generic language icon */ -}}
+    {{- $materialIcon := "language" -}}
+    {{- if in (slice "email" "mail") $name -}}
+      {{- $materialIcon = "email" -}}
+    {{- else if in (slice "rss" "rss_feed" "feed") $name -}}
+      {{- $materialIcon = "rss_feed" -}}
+    {{- end -}}
+    <i class="material-icons">{{ $materialIcon }}</i>
+  {{- end -}}
+{{- end -}}
