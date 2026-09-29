@@ -1,74 +1,65 @@
-<html lang="{{ site.Language.Locale }}">
+{{ define "title" }}404 - 页面未找到 | {{ site.Title }}{{ end }}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{{ define "main" }}
+<main id="error404" role="main" class="main-panel">
+  <div class="page-content">
+    <div class="container container-ex">
+      <div class="inner">
+        <section class="post-wrapper">
+          <div class="post reveal no-toc">
+            <div class="card">
+              <section class="breadcrumb-root">
+                <div class="breadcrumbs" role="navigation" aria-label="breadcrumbs navigation">
+                  <a class="breadcrumb" href="{{ site.Home.RelPermalink }}">
+                    <i class="material-icons">location_on</i>Home
+                  </a>
+                  <span class="breadcrumb">404</span>
+                </div>
+              </section>
 
-  <title>{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}</title>
-  <style>
-    /* Styles of the 404 page of my website. */
+              <div class="card-header postinfo">
+                <span class="card-title">404 - 页面未找到</span>
+              </div>
 
-    body {
-      background: #081421;
-      color: #d3d7de;
-      font-family: "Courier new";
-      font-size: 18px;
-      line-height: 1.5em;
-      cursor: default;
-    }
+              <div class="card-content">
+                <div class="error-page-wrapper">
+                  <div class="error-code-badge">
+                    <i class="material-icons">explore_off</i>
+                    <span class="error-number">404</span>
+                  </div>
+                  <h2 class="error-headline">哎呀，页面走丢了！</h2>
+                  <p class="error-lead">
+                    抱歉，您访问的页面不存在或已被移除。您可以返回首页、查看文章归档，或使用右上角的站内搜索寻找需要的内容。
+                  </p>
 
-    .code-area {
-      position: absolute;
-      width: 320px;
-      min-width: 320px;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
+                  <div class="error-code-box">
+                    <pre><code><span class="comment">// 404 page not found.</span>
+<span class="keyword">if</span> (<span class="operator">!</span><span class="variable">found</span>) {
+  <span class="keyword">throw</span> <span class="string">"(╯°□°)╯︵ ┻━┻"</span>;
+}</code></pre>
+                  </div>
+                </div>
+              </div>
 
-    .code-area>span {
-      display: block;
-    }
-
-    @media screen and (max-width: 320px) {
-      .code-area {
-        font-size: 5vw;
-        min-width: auto;
-        width: 95%;
-        margin: auto;
-        padding: 5px;
-        padding-left: 10px;
-        line-height: 6.5vw;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="code-area">
-    <span style="color: #777;font-style:italic;">
-      // 404 page not found.
-    </span>
-    <span>
-      <span style="color:#d65562;">
-        if
-      </span>
-      (
-      <span style="color:#4ca8ef;">!</span>
-      <span style="font-style: italic;color:#bdbdbd;">found</span>) {
-    </span>
-    <span>
-      <span style="padding-left: 15px;color:#2796ec">
-        <i style="width: 10px;display:inline-block"></i>throw
-      </span>
-      <span>
-        (
-        <span style="color: #a6a61f">"(╯°□°)╯︵ ┻━┻"</span>);
-      </span>
-      <span style="display:block">}</span>
-    </span>
+              <div class="card-action card-action-links error-action-links">
+                <a href="{{ site.Home.RelPermalink }}" class="btn waves-effect">
+                  <i class="material-icons left">home</i> 返回首页
+                </a>
+                <a href="javascript:history.back()" class="btn btn-secondary waves-effect">
+                  <i class="material-icons left">arrow_back</i> 返回上一页
+                </a>
+                {{ with site.GetPage "/archive" }}
+                <a href="{{ .RelPermalink }}" class="btn btn-secondary waves-effect">
+                  <i class="material-icons left">history</i> 全站归档
+                </a>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
-</body>
-
-</html>
+  {{ partialCached "footer.html" . }}
+</main>
+{{ end }}
