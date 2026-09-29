@@ -149,6 +149,11 @@ hasCJKLanguage = true
   [markup.goldmark]
     [markup.goldmark.extensions]
       typographer = true
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
     [markup.goldmark.parser]
       # The old blackfriday config allowed raw HTML; keep the same behaviour.
       wrapStandAloneImageWithinParagraph = false

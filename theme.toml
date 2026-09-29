@@ -10,7 +10,7 @@ features = [
   'waterfall layout',
   'syntax highlighting (built-in Chroma)',
   'built-in search (Fuse.js)',
-  'MathJax (opt-in via front matter)',
+  'KaTeX (opt-in via front matter)',
   'dark mode (auto + manual)',
   'responsive design',
   'admonition / video / music shortcodes'

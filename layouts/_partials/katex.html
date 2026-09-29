@@ -1,0 +1,42 @@
+{{/*
+  KaTeX — loaded on demand only.
+
+  A page opts in by setting `math = true` in its front matter:
+
+    ---
+    title: "My math post"
+    math: true
+    ---
+
+  On list/home pages, KaTeX is automatically included if any post in the list has `math = true`.
+*/}}
+{{- $hasMath := .Params.math -}}
+{{- if not $hasMath -}}
+  {{- if or .IsHome .IsBranch -}}
+    {{- range .Pages -}}
+      {{- if .Params.math }}{{ $hasMath = true }}{{ end -}}
+    {{- end -}}
+    {{- if and .IsHome (not $hasMath) -}}
+      {{- range site.RegularPages -}}
+        {{- if .Params.math }}{{ $hasMath = true }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $hasMath -}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '\\[', right: '\\]', display: true },
+      { left: '$', right: '$', display: false },
+      { left: '\\(', right: '\\)', display: false }
+    ],
+    throwOnError: false,
+    strict: false,
+    trust: true,
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  });"></script>
+{{- end -}}

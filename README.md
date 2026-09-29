@@ -22,8 +22,9 @@
   * 侧边动态目录（Table of Contents），支持阅读高亮指示器。
   * 内置 Chroma 服务端语法高亮，告别笨重的外部 highlight.js。
   * 自适应 Markdown 表格排版，短表格自动撑满 100% 宽度，大表格自动横向滚动。
-* **数学公式渲染（MathJax 3）**：
-  * 按需按篇加载：新建文章默认包含 `math: true`，仅在声明的文章中加载 MathJax 3 渲染引擎。
+* **数学公式渲染（KaTeX 宽松模式）**：
+  * 按需按篇加载：在 Front Matter 中声明 `math: true` 即可启用；首页/列表瀑布流卡片智能自动检测。
+  * 采用宽松模式（`strict: false`，`throwOnError: false`，`trust: true`），兼容 `\rarr`、`\larr` 以及不带花括号的下标等常见语法，渲染速度比 MathJax 提升数倍。
 * **丰富的短代码（Shortcodes）**：
   * `admonition`：信息与警告提示框。
   * `video`：原生 HTML5 视频播放器（支持 MP4 / WebM / OGG）。
@@ -173,6 +174,16 @@ enableGitInfo = true
   pre = "<svg class='svg-icons svg-icons-sina-weibo'><use xlink:href='#svg-icons-sina-weibo'></use></svg>"
   name = "Weibo"
   url = "http://weibo.com/..."
+
+# Markdown 与数学公式 (可选：使用 LaTeX 公式时建议开启 Passthrough 保护)
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
 ```
 
 ---
@@ -195,7 +206,7 @@ title: "My First Post"
 date: 2026-09-28T12:00:00+08:00
 draft: false
 toc: true             # 是否显示文章目录（字数大于 400 且存在各级标题时展示）
-math: true            # 是否启用 MathJax 3 渲染公式
+math: true            # 是否启用 KaTeX 渲染公式
 wordCount: true       # 是否显示字数统计
 readingTime: true     # 是否显示预计阅读时间
 categories:

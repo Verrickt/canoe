@@ -274,7 +274,7 @@
   td > code,
   th > code {
     color: var(--code-inline-color, #c7254e);
-    white-space: nowrap;
+    white-space: normal;
     padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
@@ -282,7 +282,7 @@
     border-radius: 0;
     font-family: $font-family-mono;
     word-break: break-word;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   kbd {
@@ -449,6 +449,9 @@
 
 // Summary in Waterfall Card
 .post-summary .article {
+  word-break: break-word;
+  overflow-wrap: break-word;
+
   h1 {
     font-size: 25px;
     line-height: 1.333334em;

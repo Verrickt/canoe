@@ -22,7 +22,7 @@
 - [x] 2.1 短代码取舍：删除 `codepen.html` / `jsfiddle.html` / `asciinema.html` / `shengxiang.html`；保留并修复 `admonition`、`video`、`music`（README 标注网易云版权风险）
 - [x] 2.2 删除 `static/js/polyfill.js`（现代浏览器不再需要）；删除 `gen_lunr_index.sh`（旧搜索工具链，Phase 4 重做）
 - [x] 2.3 移除 `cdn.bootcss.com` 死链：代码高亮改用 Hugo 内置 Chroma（零 JS），删除 highlight.js 9.12 相关全部 `<script>`/CSS 与 graphql 注册 hack
-- [x] 2.4 MathJax 2.7.2 每页无条件加载 → 改为 MathJax 3，仅当文章 front matter 声明 `math = true` 时按需加载
+- [x] 2.4 MathJax 2.7.2 每页无条件加载 → 迁移为 KaTeX（宽松模式，按需按篇加载，仅当文章 front matter 声明 `math = true` 时按需加载）
 - [x] 2.5 Google Analytics 旧版 `ga()` 代码段 → 可选的现代 gtag 配置项（不配置则不输出任何脚本）
 
 ## Phase 3 · 中改动（模板重组与 SEO）
