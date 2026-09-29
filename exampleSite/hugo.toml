@@ -1,6 +1,6 @@
 baseURL = "https://example.org"
 locale = "zh-cn"
-title = "Hugo Canon-Revived Theme"
+title = "Hugo Theme Canon-Revived"
 
 
 theme = "canon-revived"
