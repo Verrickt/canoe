@@ -225,7 +225,7 @@ $$
 - ~~删除线 (Strikethrough)~~：~~废弃的旧版本实现~~
 - 上标与下标：$H_2O$ 与 $E = mc^2$
 - 键盘按键风格：按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> 强制刷新页面，或按 <kbd>Alt</kbd> + <kbd>F4</kbd> 关闭窗口。
-- 文本标记高亮：可以使用 HTML 原生 `<mark>突出显示的重要文本</mark>` 标记。
+- 文本标记高亮：可以使用 HTML 原生 <mark>突出显示的重要文本</mark> 标记。
 
 ### 5.3 引用块 (Blockquotes)
 

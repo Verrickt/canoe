@@ -93,6 +93,9 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --kbd-border: #cccccc;
   --kbd-shadow: #bbbbbb;
 
+  --mark-bg: #fff59d;
+  --mark-color: #212121;
+
   --selection-bg: #{$selection-color};
   --selection-color: #ffffff;
 
@@ -168,6 +171,9 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --kbd-color: #e0e0e0;
   --kbd-border: #444444;
   --kbd-shadow: #333333;
+
+  --mark-bg: rgba(255, 235, 59, 0.25);
+  --mark-color: #fff9c4;
 
   --selection-bg: #7986cb;
   --selection-color: #ffffff;
@@ -245,6 +251,9 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --kbd-color: #e0e0e0;
     --kbd-border: #444444;
     --kbd-shadow: #333333;
+
+    --mark-bg: rgba(255, 235, 59, 0.25);
+    --mark-color: #fff9c4;
 
     --selection-bg: #7986cb;
     --selection-color: #ffffff;
