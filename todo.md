@@ -6,7 +6,7 @@
 > 评论默认不集成（仅留钩子）；界面文案仅中文；暗色 = 自动 + 手动切换；
 > 短代码保留 admonition / video / music，删除 codepen / jsfiddle / asciinema / shengxiang。
 >
-> 验收命令：`hugo server -s .\exampleSite --themesDir=..\.. --theme=canoe`
+> 验收命令：`hugo server -s .\exampleSite --themesDir=..\.. --theme=canoe-revived`
 
 ---
 
