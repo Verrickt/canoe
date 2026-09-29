@@ -505,17 +505,11 @@
 
     .emoji-light {
       display: inline-block;
-      height: 100%;
-      width: auto;
-      vertical-align: top;
       object-fit: contain;
     }
 
     .emoji-dark {
       display: none;
-      height: 100%;
-      width: auto;
-      vertical-align: top;
       object-fit: contain;
     }
   }
