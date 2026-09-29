@@ -34,6 +34,16 @@ hasCJKLanguage = true
   # 是否使用动态加载效果, if using fade effect while loading (scroll-reveal.js)
   reveal_effect = true
 
+  # 自定义表情支持 ([ac01], [tb03], [ms02])
+  [params.emoji]
+    enable = true
+    # AC娘表情日间与夜间模式对应 URL 前缀
+    ac_light_prefix = "/smily/ac/"
+    ac_dark_prefix  = "/smily/ac_dark/"
+    # 麻将脸与贴吧泡泡 URL 前缀
+    ms_prefix       = "/smily/ms/"
+    tb_prefix       = "/smily/tb/"
+
 # 评论默认不集成。如需接入自建评论系统,
 # 请在你的站点下创建 layouts/partials/comments.html 并自行实现。
 # 详见 README "评论接入" 一节。

@@ -1,0 +1,47 @@
+{{- $content := . -}}
+{{- $cfg := site.Params.emoji | default dict -}}
+{{- $acLight := $cfg.ac_light_prefix | default "/smily/ac/" -}}
+{{- $acDark := $cfg.ac_dark_prefix | default "/smily/ac_dark/" -}}
+{{- $msPrefix := $cfg.ms_prefix | default "/smily/ms/" -}}
+{{- $tbPrefix := $cfg.tb_prefix | default "/smily/tb/" -}}
+
+{{/* Ensure trailing slashes */}}
+{{- if not (strings.HasSuffix $acLight "/") }}{{ $acLight = printf "%s/" $acLight }}{{ end -}}
+{{- if not (strings.HasSuffix $acDark "/") }}{{ $acDark = printf "%s/" $acDark }}{{ end -}}
+{{- if not (strings.HasSuffix $msPrefix "/") }}{{ $msPrefix = printf "%s/" $msPrefix }}{{ end -}}
+{{- if not (strings.HasSuffix $tbPrefix "/") }}{{ $tbPrefix = printf "%s/" $tbPrefix }}{{ end -}}
+
+{{/* Step 1: Shield code blocks (<pre>...</pre>) and inline code (<code>...</code>) */}}
+{{- $codeRegex := `(?s)(<pre[^>]*>.*?</pre>|<code[^>]*>.*?</code>)` -}}
+{{- $codeBlocks := findRE $codeRegex $content -}}
+
+{{- $masked := $content -}}
+{{- range $i, $block := $codeBlocks -}}
+  {{- $token := printf "CANOE_CODE_BLOCK_HOLD_%d_TOKEN" $i -}}
+  {{- $masked = replace $masked $block $token 1 -}}
+{{- end -}}
+
+{{/* Step 2: Replace custom emoji codes */}}
+{{/* AC娘: 1~54, 1001~1040, 2001~2055 (Dual-image for light and dark themes) */}}
+{{- $acRegex := `\[(ac(?:0[1-9]|[1-4]\d|5[0-4]|100[1-9]|10[1-3]\d|1040|200[1-9]|20[1-4]\d|205[0-5]))\]` -}}
+{{- $acTpl := printf `<span class="canoe-emoji canoe-emoji-ac" title="$1"><img class="emoji-light" src="%s$1.png" alt="[$1]" loading="lazy"><img class="emoji-dark" src="%s$1.png" alt="[$1]" loading="lazy"></span>` $acLight $acDark -}}
+{{- $masked = replaceRE $acRegex $acTpl $masked -}}
+
+{{/* 麻将脸: 1~54 */}}
+{{- $msRegex := `\[(ms(?:0[1-9]|[1-4]\d|5[0-4]))\]` -}}
+{{- $msTpl := printf `<img class="canoe-emoji" src="%s$1.png" alt="[$1]" title="$1" loading="lazy">` $msPrefix -}}
+{{- $masked = replaceRE $msRegex $msTpl $masked -}}
+
+{{/* 贴吧泡泡: 1~33 */}}
+{{- $tbRegex := `\[(tb(?:0[1-9]|[1-2]\d|3[0-3]))\]` -}}
+{{- $tbTpl := printf `<img class="canoe-emoji" src="%s$1.png" alt="[$1]" title="$1" loading="lazy">` $tbPrefix -}}
+{{- $masked = replaceRE $tbRegex $tbTpl $masked -}}
+
+{{/* Step 3: Restore shielded code blocks */}}
+{{- $final := $masked -}}
+{{- range $i, $block := $codeBlocks -}}
+  {{- $token := printf "CANOE_CODE_BLOCK_HOLD_%d_TOKEN" $i -}}
+  {{- $final = replace $final $token $block 1 -}}
+{{- end -}}
+
+{{- $final | safeHTML -}}

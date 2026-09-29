@@ -3,4 +3,5 @@ exampleSite/public
 exampleSite/.hugo_build.lock
 resources/
 exampleSite/resources/
+exampleSite/static/smily/
 ref/

@@ -58,7 +58,11 @@
               <div class="card-content">
 
                 <article class="article">
-                  {{ .Content }}
+                  {{ if site.Params.emoji.enable | default true }}
+                    {{ partial "helpers/emoji-filter.html" .Content }}
+                  {{ else }}
+                    {{ .Content }}
+                  {{ end }}
                 </article>
 
               </div>

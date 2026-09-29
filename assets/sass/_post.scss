@@ -489,3 +489,47 @@
     }
   }
 }
+
+// ==========================================
+// Custom Emoji Support ([ac01], [tb03], [ms02])
+// ==========================================
+.canoe-emoji {
+  display: inline-block;
+  object-fit: contain;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+
+  // AC娘: Light/Dark theme switching container
+  &.canoe-emoji-ac {
+
+    .emoji-light {
+      display: inline-block;
+      height: 100%;
+      width: auto;
+      vertical-align: top;
+      object-fit: contain;
+    }
+
+    .emoji-dark {
+      display: none;
+      height: 100%;
+      width: auto;
+      vertical-align: top;
+      object-fit: contain;
+    }
+  }
+}
+
+// Dark Mode activation for AC娘 emoji
+[data-theme="dark"] {
+  .canoe-emoji.canoe-emoji-ac {
+    .emoji-light {
+      display: none;
+    }
+    .emoji-dark {
+      display: inline-block;
+    }
+  }
+}
+
