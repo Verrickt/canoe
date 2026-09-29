@@ -323,6 +323,10 @@ body.mobile-sidebar-active {
 
       &.group-slink {
         flex-basis: 66%;
+
+        &:only-child {
+          flex-basis: 100%;
+        }
       }
 
       &.group-flink {

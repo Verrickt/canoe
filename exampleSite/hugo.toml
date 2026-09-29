@@ -87,7 +87,7 @@ hasCJKLanguage = true
   name = "Category"
   identifier="categories"
 
-#  友情链接 Your Friend's blog links
+# 友情链接 Your Friend's blog links (可选，未配置则页脚不渲染 My Friends 块)
 [[menu.friend]]
   name = "Frantic1048"
   url = "https://frantic1048.logdown.com/"
@@ -99,6 +99,7 @@ hasCJKLanguage = true
 [[menu.friend]]
   name = "WANG Hsü-Tung"
   url = "https://whst.github.io/"
+
 
 
 # 社交账号 Social Network (支持 Simple Icons 3200+ 品牌图标或自定义 pre)

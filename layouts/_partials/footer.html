@@ -16,16 +16,18 @@
             {{ end }} {{ end }}
           </ul>
         </div>
+        {{ with site.Menus.friend }}
         <div class="group group-flink">
           <h5>My Friends</h5>
           <ul>
-            {{ with site.Menus.friend }}{{ range . }}
+            {{ range . }}
             <li>
               <a href="{{ .URL }}" target="_blank">{{ .Name }}</a>
             </li>
-            {{ end }}{{ end }}
+            {{ end }}
           </ul>
         </div>
+        {{ end }}
       </div>
     </div>
   </div>
