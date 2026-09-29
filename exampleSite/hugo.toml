@@ -1,9 +1,9 @@
 baseURL = "https://example.org"
 locale = "zh-cn"
-title = "Hugo Theme Canon-Revived"
+title = "Hugo Theme Canoe-Revived"
 
 
-theme = "canon-revived"
+theme = "canoe-revived"
 
 # last mod time support
 enableGitInfo = true

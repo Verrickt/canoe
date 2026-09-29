@@ -1,9 +1,9 @@
 
-name = "canon-revived"
+name = "canoe-revived"
 license = "MIT"
-licenselink = "https://github.com/Verrickt/canon-revived/blob/master/LICENSE.md"
+licenselink = "https://github.com/Verrickt/canoe-revived/blob/master/LICENSE.md"
 description = "A beautiful and powerful Material Design theme for Hugo (modernized for Hugo 0.146+ / 0.166+)"
-homepage = "https://github.com/Verrickt/canon-revived"
+homepage = "https://github.com/Verrickt/canoe-revived"
 tags = ['blog', 'material design', 'responsive', 'dark mode', 'search']
 features = [
   'table of contents',

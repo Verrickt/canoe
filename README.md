@@ -1,4 +1,4 @@
-# Hugo Canon-Revived Theme
+# Hugo Canoe-Revived Theme
 
 > A beautiful, modern, and powerful Material Design theme for Hugo (0.146+ / 0.166+).  
 > 优雅、轻量、高可用的 Material Design 静态博客主题（由 [Verrickt](https://github.com/Verrickt) 基于原版 Canoe 全面重构复活，构建零 npm 依赖）。
@@ -48,13 +48,13 @@
 作为 Git 子模块（Git Submodule）添加至你的 Hugo 站点根目录（推荐）：
 
 ```bash
-git submodule add https://github.com/Verrickt/canon-revived.git themes/canon-revived
+git submodule add https://github.com/Verrickt/canoe-revived.git themes/canoe-revived
 ```
 
 或者直接克隆：
 
 ```bash
-git clone https://github.com/Verrickt/canon-revived.git themes/canon-revived
+git clone https://github.com/Verrickt/canoe-revived.git themes/canoe-revived
 ```
 
 > [!TIP]
@@ -65,7 +65,7 @@ git clone https://github.com/Verrickt/canon-revived.git themes/canon-revived
 修改站点根目录下的配置文件（推荐 `hugo.toml`）：
 
 ```toml
-theme = "canon-revived"
+theme = "canoe-revived"
 ```
 
 ### 3. 本地预览
@@ -84,7 +84,7 @@ hugo server -D
 baseURL = "https://example.org/"
 locale = "zh-cn"
 title = "My Blog"
-theme = "canon-revived"
+theme = "canoe-revived"
 
 # 启用 CJK 语言自动分词与统计（中文环境下正确计算字数与摘要）
 hasCJKLanguage = true
