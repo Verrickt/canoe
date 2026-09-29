@@ -95,6 +95,27 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   --selection-bg: #{$selection-color};
   --selection-color: #ffffff;
+
+  // Admonition Tokens (Material Design 2 Light)
+  --admonition-note-border: #1e88e5;
+  --admonition-note-bg: #e3f2fd;
+  --admonition-note-title: #1565c0;
+
+  --admonition-tip-border: #43a047;
+  --admonition-tip-bg: #e8f5e9;
+  --admonition-tip-title: #2e7d32;
+
+  --admonition-important-border: #673ab7;
+  --admonition-important-bg: #ede7f6;
+  --admonition-important-title: #4527a0;
+
+  --admonition-warning-border: #ff8f00;
+  --admonition-warning-bg: #fff8e1;
+  --admonition-warning-title: #ff6f00;
+
+  --admonition-caution-border: #e53935;
+  --admonition-caution-bg: #ffebee;
+  --admonition-caution-title: #c62828;
 }
 
 // Dark Mode Tokens (Manual Override)
@@ -150,6 +171,27 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   --selection-bg: #7986cb;
   --selection-color: #ffffff;
+
+  // Admonition Tokens (Material Design 2 Dark)
+  --admonition-note-border: #42a5f5;
+  --admonition-note-bg: rgba(33, 150, 243, 0.12);
+  --admonition-note-title: #90caf9;
+
+  --admonition-tip-border: #66bb6a;
+  --admonition-tip-bg: rgba(76, 175, 80, 0.12);
+  --admonition-tip-title: #a5d6a7;
+
+  --admonition-important-border: #b39ddb;
+  --admonition-important-bg: rgba(103, 58, 183, 0.14);
+  --admonition-important-title: #d1c4e9;
+
+  --admonition-warning-border: #ffca28;
+  --admonition-warning-bg: rgba(255, 179, 0, 0.12);
+  --admonition-warning-title: #ffe082;
+
+  --admonition-caution-border: #ef5350;
+  --admonition-caution-bg: rgba(244, 67, 54, 0.12);
+  --admonition-caution-title: #ef9a9a;
 }
 
 // Dark Mode Tokens (System Preference Fallback)
@@ -206,5 +248,26 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --selection-bg: #7986cb;
     --selection-color: #ffffff;
+
+    // Admonition Tokens (Material Design 2 Dark)
+    --admonition-note-border: #42a5f5;
+    --admonition-note-bg: rgba(33, 150, 243, 0.12);
+    --admonition-note-title: #90caf9;
+
+    --admonition-tip-border: #66bb6a;
+    --admonition-tip-bg: rgba(76, 175, 80, 0.12);
+    --admonition-tip-title: #a5d6a7;
+
+    --admonition-important-border: #b39ddb;
+    --admonition-important-bg: rgba(103, 58, 183, 0.14);
+    --admonition-important-title: #d1c4e9;
+
+    --admonition-warning-border: #ffca28;
+    --admonition-warning-bg: rgba(255, 179, 0, 0.12);
+    --admonition-warning-title: #ffe082;
+
+    --admonition-caution-border: #ef5350;
+    --admonition-caution-bg: rgba(244, 67, 54, 0.12);
+    --admonition-caution-title: #ef9a9a;
   }
 }

@@ -1,22 +1,48 @@
 {{/*
-  Admonition.
+  Admonition (GitHub Flavored Markdown 5 Alert Types + Material Design 2).
 
   Usage:
 
-    {{% admonition type="warning" title="自定义标题" %}} ... {{% /admonition %}}
-    {{% admonition %}} ... {{% /admonition %}}  (type defaults to "note", title defaults to "注意")
+    {{< admonition type="tip" title="自定义标题" >}} ... {{< /admonition >}}
+    {{< admonition type="warning" >}} ... {{< /admonition >}}
+    {{< admonition >}} ... {{< /admonition >}} (defaults to note / 注意)
 
-  Supported types: note (default) / warning. Any other type falls back to note styling.
+  Supported types: note (info), tip, important, warning (alert), caution (danger).
+  Any unknown type falls back to note styling.
 */}}
-{{ $type := strings.ToLower (or (.Get "type") (.Get 0) "note") }}
-{{ $title := or (.Get "title") (.Get 1) "注意" }}
-{{ if not (in (slice "note" "warning") $type) }}{{ $type = "note" }}{{ end }}
+{{ $rawType := strings.ToLower (or (.Get "type") (.Get 0) "note") }}
+{{ $type := $rawType }}
+{{ if in (slice "info") $type }}{{ $type = "note" }}{{ end }}
+{{ if in (slice "alert") $type }}{{ $type = "warning" }}{{ end }}
+{{ if in (slice "danger") $type }}{{ $type = "caution" }}{{ end }}
+{{ if not (in (slice "note" "tip" "important" "warning" "caution") $type) }}
+  {{ $type = "note" }}
+{{ end }}
+
+{{ $defaultTitle := "注意" }}
+{{ $icon := "info" }}
+{{ if eq $type "tip" }}
+  {{ $defaultTitle = "提示" }}
+  {{ $icon = "lightbulb" }}
+{{ else if eq $type "important" }}
+  {{ $defaultTitle = "重要" }}
+  {{ $icon = "priority_high" }}
+{{ else if eq $type "warning" }}
+  {{ $defaultTitle = "警告" }}
+  {{ $icon = "warning" }}
+{{ else if eq $type "caution" }}
+  {{ $defaultTitle = "危险" }}
+  {{ $icon = "report" }}
+{{ end }}
+
+{{ $title := or (.Get "title") (.Get 1) $defaultTitle }}
 
 <div class="admonition {{ $type }}">
   <p class="admonition-title">
-    <i class="material-icons">
-      {{ if eq $type "warning" }}warning{{ else }}assistant_photo{{ end }}
-    </i>{{ $title }}
+    <i class="material-icons">{{ $icon }}</i>
+    <span>{{ $title }}</span>
   </p>
-  <div class="admonition-content">{{ .Inner | markdownify }}</div>
+  <div class="admonition-content">
+    {{ .Inner | markdownify }}
+  </div>
 </div>

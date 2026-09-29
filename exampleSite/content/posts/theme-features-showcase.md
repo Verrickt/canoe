@@ -20,41 +20,65 @@ readingTime: true
 
 使用原生 HTML5 `<video>` 标签，无任何外部重型播放器依赖，自适应卡片宽度：
 
-{{% video mp4="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" %}}
+{{< video mp4="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" >}}
 
 ### 1.2 网易云音乐外链播放器 (`music`)
 
 集成网易云音乐官方外链 iframe，测试曲目为 doriko 经典名曲《歌に形はないけれど》（Song ID: `409912`）：
 
-{{% music id="409912" %}}
+{{< music id="409912" >}}
 
 ---
 
 ## 2. 提示框组件 (Admonitions)
 
-### 2.1 默认注意提示框 (Default Note)
+参考 **GitHub Flavored Markdown (GFM)** 标准规范，提供 5 种具备明确语义色彩的提示框组件，全面采用 **Material Design 2 (MD2)** 经典色彩规范与通栏横幅设计（Form B），完美支持深色模式动态平滑切换：
 
-未指定类型时的默认渲染效果，用于一般性提示：
+### 2.1 注意提示框 (Note / 默认)
 
-{{% admonition %}}
-这是一条未指定 `type` 的默认提示框，采用经典 Material 浅蓝配色与 `assistant_photo` 图标。
-{{% /admonition %}}
+用于一般性补充说明、背景信息与默认提示（未指定 `type` 时默认为 `note`）：
 
-### 2.2 信息提示框 (Note / Info)
+{{< admonition >}}
+这是一条未指定 `type` 的默认提示框，采用 Material Blue 沉稳蓝配色，标题自动采用“注意”与 `info` 图标。
+{{< /admonition >}}
 
 明确指定 `type="note"` 并自定义标题：
 
-{{% admonition type="note" title="版本更新提示" %}}
+{{< admonition type="note" title="版本更新提示" >}}
 Canoe-Revived 已全面支持 **Hugo Extended 0.146+ / 0.166+**，构建管道基于 Hugo 原生 Pipes（`css.Sass` 与 `js.Build`），实现真正的**零 npm、零 Node.js 依赖**。
-{{% /admonition %}}
+{{< /admonition >}}
 
-### 2.3 警告提示框 (Warning)
+### 2.2 技巧提示框 (Tip)
 
-用于重要风险、注意事项或破坏性操作警示：
+用于建议、最佳实践或提效快捷技巧（Material Green 薄荷绿配色）：
 
-{{% admonition type="warning" title="重要配置注意事项" %}}
+{{< admonition type="tip" title="排版效率建议" >}}
+在撰写长篇文章时，推荐使用 `toc = true` 开启侧边目录导航，Canoe 内部自研的滚动监听模块会自动为您高亮阅读进度的当前章节。
+{{< /admonition >}}
+
+### 2.3 关键重要提示框 (Important)
+
+用于关键核心逻辑、不可遗漏的前提条件（Material Deep Purple 深紫配色）：
+
+{{< admonition type="important" title="核心构建前提" >}}
+若您需要修改 SCSS 或 TypeScript 源码，请确保下载并安装 **Hugo Extended（扩展版）**。标准版 Hugo 不包含 LibSass / DartSass 与 ESBuild 引擎。
+{{< /admonition >}}
+
+### 2.4 风险警告提示框 (Warning)
+
+用于破坏性风险、避坑警示或操作前置警示（Material Amber 琥珀金配色）：
+
+{{< admonition type="warning" title="公式书写注意事项" >}}
 若在文章中书写包含下标（如 `x_i`）的复杂 LaTeX 公式，请确保在 `hugo.toml` 中开启 Goldmark 的 `passthrough` 扩展，以防止下划线被 Markdown 引擎错误解析为斜体标签 `<em>`。
-{{% /admonition %}}
+{{< /admonition >}}
+
+### 2.5 危险严重提示框 (Caution)
+
+用于严重危险、数据损失或不可逆操作警示（Material Red 绯红配色）：
+
+{{< admonition type="caution" title="不可逆操作警告" >}}
+执行 `rm -rf public/*` 或类似清空目录命令前，请务必仔细核对当前终端的工作目录路径，防止误删用户数据或 Git 版本树。
+{{< /admonition >}}
 
 ---
 

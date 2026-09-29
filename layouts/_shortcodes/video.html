@@ -3,8 +3,8 @@
 
   Usage:
 
-    {{% video mp4="/media/oceans.mp4" %}}
-    {{% video mp4="..." webm="..." ogv="..." poster="/img/poster.jpg" %}}
+    {{< video mp4="/media/oceans.mp4" >}}
+    {{< video mp4="..." webm="..." ogv="..." poster="/img/poster.jpg" >}}
 
   At least one source is required. Sources are rendered in the order
   mp4 / webm / ogv when provided. The poster attribute is optional.
@@ -15,12 +15,14 @@
 {{ $poster := .Get "poster" }}
 
 {{ if or $mp4 $webm $ogv }}
+<div class="video-container">
 <video class="video-player" controls preload="metadata"{{ with $poster }} poster="{{ . | relURL }}"{{ end }}>
   {{ with $mp4 }}<source src="{{ . | relURL }}" type="video/mp4">{{ end }}
   {{ with $webm }}<source src="{{ . | relURL }}" type="video/webm">{{ end }}
   {{ with $ogv }}<source src="{{ . | relURL }}" type="video/ogg">{{ end }}
   你的浏览器不支持 HTML5 video,请升级浏览器后重试。
 </video>
+</div>
 {{ else }}
 {{ errorf "video shortcode: at least one of mp4/webm/ogv is required (page %s)" .Page.Path }}
 {{ end }}

@@ -159,13 +159,17 @@
 // Shortcodes
 // ------------------------------------------
 
-// Admonition Shortcode
+// Admonition Shortcode (Material Design 2 Form B: Full-Bleed Banner)
 .admonition {
-  margin: 20px -24px;
+  margin: 24px -24px;
   padding: 16px 24px;
-  background: #42a5f5;
-  color: #ffffff;
   border-radius: 0;
+  border-left: 5px solid var(--admonition-note-border);
+  background-color: var(--admonition-note-bg);
+  color: var(--text-primary);
+  transition: background-color var(--transition-normal),
+              border-color var(--transition-normal),
+              color var(--transition-normal);
 
   @media only screen and (max-width: $screen-md-max) {
     margin-left: -16px;
@@ -174,25 +178,82 @@
     padding-right: 16px;
   }
 
+  &.note {
+    border-left-color: var(--admonition-note-border);
+    background-color: var(--admonition-note-bg);
+
+    .admonition-title {
+      color: var(--admonition-note-title);
+    }
+  }
+
+  &.tip {
+    border-left-color: var(--admonition-tip-border);
+    background-color: var(--admonition-tip-bg);
+
+    .admonition-title {
+      color: var(--admonition-tip-title);
+    }
+  }
+
+  &.important {
+    border-left-color: var(--admonition-important-border);
+    background-color: var(--admonition-important-bg);
+
+    .admonition-title {
+      color: var(--admonition-important-title);
+    }
+  }
+
   &.warning {
-    background: #ff7043;
+    border-left-color: var(--admonition-warning-border);
+    background-color: var(--admonition-warning-bg);
+
+    .admonition-title {
+      color: var(--admonition-warning-title);
+    }
+  }
+
+  &.caution {
+    border-left-color: var(--admonition-caution-border);
+    background-color: var(--admonition-caution-bg);
+
+    .admonition-title {
+      color: var(--admonition-caution-title);
+    }
   }
 
   .admonition-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     display: flex;
     align-items: center;
+    transition: color var(--transition-normal);
 
     i {
-      margin-right: 6px;
-      font-size: 22px;
-      vertical-align: middle;
+      margin-right: 8px;
+      margin-top: 2px;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    span {
+      display: inline-flex;
+      align-items: center;
     }
   }
 
   .admonition-content {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-primary);
+
     p {
       margin: 0.5em 0;
 
@@ -203,6 +264,28 @@
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    code {
+      background: var(--code-inline-bg);
+      color: var(--code-inline-color);
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-size: 0.9em;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: underline;
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+
+    ul, ol {
+      margin: 0.5em 0;
+      padding-left: 1.5em;
     }
   }
 }

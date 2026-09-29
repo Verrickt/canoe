@@ -231,30 +231,38 @@ Hugo 在编译时会自动生成 `index.json`，主题内置的 Fuse.js 模块�
 ### 3. 短代码 (Shortcodes)
 
 #### 提示块 (Admonition)
-支持 `info`（默认蓝色）与 `warning`（橙色）：
+参考 GitHub Flavored Markdown (GFM) 规范，提供 5 种具备明确语义色彩的提示框组件（支持 Material Design 2 亮暗主题自适应切换）：
+
+| 类型 (`type`) | 语义定位 | 默认标题 | 默认图标 | MD2 色系 |
+| :--- | :--- | :--- | :--- | :--- |
+| `note` (或 `info`) | 一般性补充说明（默认） | 注意 | `info` | Material Blue 沉稳蓝 |
+| `tip` | 建议、最佳实践或提效技巧 | 提示 | `lightbulb` | Material Green 薄荷绿 |
+| `important` | 核心要点、关键前置条件 | 重要 | `priority_high` | Material Deep Purple 深紫 |
+| `warning` (或 `alert`) | 风险警示、避坑指南 | 警告 | `warning` | Material Amber 琥珀金 |
+| `caution` (或 `danger`) | 严重危险、破坏性操作 | 危险 | `report` | Material Red 绯红 |
 
 ```markdown
-{{% admonition type="info" title="提示" %}}
-这是一条普通的信息提示。
-{{% /admonition %}}
+{{< admonition >}}
+未指定 type 时的默认提示框（等同于 type="note"）。
+{{< /admonition >}}
 
-{{% admonition type="warning" title="注意" %}}
-这是一条重要警告提示。
-{{% /admonition %}}
+{{< admonition type="tip" title="技巧提示" >}}
+支持使用 title 参数覆盖默认标题。
+{{< /admonition >}}
 ```
 
 #### 原生视频播放 (Video)
 使用 HTML5 原生 `<video>` 播放本地或外部视频：
 
 ```markdown
-{{% video mp4="/media/demo.mp4" poster="/img/poster.jpg" %}}
+{{< video mp4="/media/demo.mp4" poster="/img/poster.jpg" >}}
 ```
 
 #### 网易云音乐 (Music)
 通过 iframe 嵌入网易云外链歌曲播放器：
 
 ```markdown
-{{% music "3950552" %}}
+{{< music "3950552" >}}
 ```
 > *注：外链播放器受网易云音乐版权保护策略限制，部分受限歌曲可能无法在外链播放。*
 
