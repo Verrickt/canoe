@@ -228,107 +228,84 @@
 // ------------------------------------------
 // 404 Error Page
 // ------------------------------------------
-.error-page-wrapper {
-  text-align: center;
-  padding: 40px 16px;
+.error-code-box {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  overflow: hidden;
 
-  .error-code-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+  pre {
+    margin: 0;
+    padding: 40px 32px;
+    background-color: var(--code-bg, #272822);
+    font-family: $font-family-mono;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #f8f8f2;
+    overflow-x: auto;
+    border-radius: 0;
+    border: none;
+    transition: background-color $transition-normal;
 
-    i.material-icons {
-      font-size: 4.5rem;
-      color: var(--primary-color, #3f51b5);
-      margin-right: 12px;
-      line-height: 1;
-      vertical-align: middle;
-      transition: color $transition-normal;
-    }
-
-    .error-number {
-      font-size: 4.5rem;
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: -2px;
-      color: var(--primary-color, #3f51b5);
-      transition: color $transition-normal;
-    }
-  }
-
-  .error-headline {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--text-primary, #212121);
-    margin: 0 0 12px;
-    transition: color $transition-normal;
-  }
-
-  .error-lead {
-    font-size: 1rem;
-    color: var(--text-secondary, #757575);
-    max-width: 500px;
-    margin: 0 auto 28px;
-    line-height: 1.6;
-    transition: color $transition-normal;
-  }
-
-  .error-code-box {
-    display: inline-block;
-    max-width: 100%;
-    margin: 0 auto;
-    text-align: left;
-    border-radius: 4px;
-    border: 1px solid var(--code-border, #383a32);
-    overflow: hidden;
-    box-shadow: var(--shadow-1, #{$z-depth-1});
-
-    pre {
-      margin: 0;
-      padding: 16px 24px;
-      background-color: var(--code-bg, #272822);
-      font-family: $font-family-mono;
+    @media only screen and (max-width: $screen-sm-max) {
+      padding: 24px 16px;
       font-size: 0.95rem;
       line-height: 1.6;
-      color: #f8f8f2;
-      overflow-x: auto;
-      transition: background-color $transition-normal, border-color $transition-normal;
+    }
 
-      code {
-        background: transparent;
-        color: inherit;
-        padding: 0;
-        font-family: inherit;
-        font-size: inherit;
-      }
+    code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      border-radius: 0;
+    }
 
-      .comment {
-        color: #75715e;
-        font-style: italic;
-      }
+    .comment {
+      color: #75715e;
+      font-style: italic;
+    }
 
-      .keyword {
-        color: #f92672;
-      }
+    .keyword {
+      color: #f92672;
+    }
 
-      .operator {
-        color: #66d9ef;
-      }
+    .operator {
+      color: #66d9ef;
+    }
 
-      .variable {
-        color: #a6e22e;
-      }
+    .variable {
+      color: #a6e22e;
+    }
 
-      .string {
-        color: #e6db74;
-      }
+    .string {
+      color: #e6db74;
     }
   }
 }
 
 .error-action-links {
   justify-content: center !important;
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
   gap: 12px;
+
+  .btn,
+  .btn.btn-secondary {
+    height: 36px !important;
+    line-height: 36px !important;
+    padding: 0 1.25rem !important;
+    font-size: 0.95rem;
+    margin: 0 !important;
+
+    i.left {
+      line-height: 36px;
+      margin-right: 6px;
+    }
+  }
 }
+
 
