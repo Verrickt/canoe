@@ -73,20 +73,27 @@
 
 // Post Wrapper & TOC Layout
 .post-wrapper {
-  margin: 0 auto;
+  margin: 0 auto 40px;
   position: relative;
 
+  @media only screen and (min-width: 1000px) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
   .post {
+    width: 100%;
+    min-width: 0;
+
     .card {
       min-height: 100%;
     }
 
     &:not(.no-toc) {
       margin-right: 0;
-
-      @media only screen and (min-width: 1000px) {
-        margin-right: 320px;
-      }
     }
 
     .breadcrumb-root {
@@ -138,19 +145,35 @@
 
   @media only screen and (min-width: 1000px) {
     display: block;
-    position: relative;
-    float: right;
+    position: sticky;
+    top: 84px;
+    flex: 0 0 320px;
     width: 320px;
-    height: 100%;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
     padding-left: 10px;
+    margin-bottom: 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb, #bdbdbd) var(--scrollbar-track, transparent);
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb, #bdbdbd);
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--scrollbar-track, transparent);
+    }
 
     nav {
-      position: fixed;
-      width: 320px;
-      top: 64px;
-      padding-top: 20px;
-      max-height: calc(100vh - 84px);
-      overflow-y: auto;
+      position: relative;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 24px;
 
       .indicator {
         position: absolute;

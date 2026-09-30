@@ -495,7 +495,6 @@ body.mobile-sidebar-active {
   min-height: calc(100vh - 64px);
   display: flex;
   flex-flow: column nowrap;
-  overflow: hidden;
   transition: all 0.2s ease-in;
 
   @media only screen and (max-width: $screen-md-max) {

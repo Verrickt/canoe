@@ -38,6 +38,13 @@ export function initTOC() {
       activeLink.classList.add('active');
       indicator.classList.add('show');
       indicator.style.top = `${activeLink.offsetTop}px`;
+
+      // Keep active heading visible inside scrollable TOC
+      const panelRect = tocPanel.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      if (linkRect.top < panelRect.top || linkRect.bottom > panelRect.bottom) {
+        activeLink.scrollIntoView({ block: 'nearest' });
+      }
     } else {
       indicator.classList.remove('show');
     }

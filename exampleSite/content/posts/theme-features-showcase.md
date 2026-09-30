@@ -289,7 +289,7 @@ $$
 
 ## 6. 代码高亮与代码块 (Chroma Code Highlighting)
 
-主题采用 Hugo 内置的 Chroma 服务端代码高亮，零外部 JS 脚本加载，渲染迅速。
+主题采用 Hugo 内置的 Chroma 服务端代码高亮，零外部 JS 脚本加载，渲染迅速。[^1]
 
 ### 6.1 Go 语言
 
